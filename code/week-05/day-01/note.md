@@ -159,3 +159,65 @@ console.log([] == ![]);               /* true */
 /* [6] true */
 
 ```
+
+> call && apply && bind 关键代码
+
+```javascript
+/* call 原理 */
+Function.prototype.call = function(context) {
+    /* 01-上下文环境的容错处理，如果context是原始类型那么就先包装 */
+    context = context ? Object(context) : window;
+
+    /* 02-获取方法并把该方法添加到当前的对象上 */
+    context.f = this;
+
+    /* 03-拿到参数列表(剔除了绑定 this的第一个参数) */
+    let args = [];
+    for (let i = 1; i < arguments.length; i++) {
+        args.push(arguments[i]);
+    }
+
+    /* 04-调用并执行函数，利用了数组的 toString来处理参数 */
+    return eval("context.f(" + args + ")");
+}
+
+/* apply 原理 */
+Function.prototype.apply = function(context, args) {
+    /* 01-上下文环境的容错处理，如果context是原始类型那么就先包装 */
+    context = context ? Object(context) : window;
+
+    /* 02-获取方法并把该方法添加到当前的对象上 */
+    context.f = this;
+
+    /* 03-如果没有以数组传递参数那么就直接调用并返回*/
+    if (!args) {
+        return context.f();
+    }
+
+    /* 04-如果以数组传递了参数那么就利用 eval 来执行函数并返回结果 */
+    return eval("context.f(" + args + ")");
+}
+
+/* bind 方法的实现原理 */
+Function.prototype.bind = function(context) {
+    let that = this;
+
+    /* 获取第一部分参数 ： ex 获取 let F = f1.bind(f2, 10); 中的10*/
+    let argsA = [].slice.call(arguments, 1); /* [10] */
+
+    function bindFunc() {
+        /* 获取第二部分的参数：ex 获取 F(20, 30); 中的 20 和 30 */
+        let argsB = [].slice.call(arguments); /* [20,30] */
+        let args = [...argsA, ...argsB];
+        return that.apply(this instanceof bindFunc ? this : context, args);
+    }
+
+    /* 原型处理 */
+    function Fn() {};
+    Fn.prototype = this.prototype;
+    bindFunc.prototype = new Fn();
+
+    /* 返回函数 */
+    return bindFunc;
+}
+```
