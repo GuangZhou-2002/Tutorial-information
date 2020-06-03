@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* JavaScript 数据类型： */
+        /* 原始类型：null undefined string number boolean symbol */
+        /* 对象类型: object (Array Object Set Map RegExp Error Function) */
+
+        /*1、 null 和 undefined？ */
+        /*2、 如何检查变量的数据类型？ typeof 关键字*/
+        /* (1) typeof */
+        /* [1] typeof null == object */
+        /* [2] typeof 函数  == function*/
+
+        // console.log(typeof 123) /* number */
+        // console.log(typeof "abc") /* string */
+        // console.log(typeof true) /* boolean */
+        // console.log(typeof null) /*  object */
+        // console.log(typeof undefined) /* undefined */
+        // console.log(typeof Symbol()) /* symbol */
+
+        // console.log(typeof {})
+        // console.log(typeof [])
+        // console.log(typeof /abc/)
+        // console.log(typeof function(){})
+        // console.log(typeof new Set())
+
+        /* (2) Object.prototype.toString() */
+        console.log({}.toString()); /* [object Object] == [对象类型 构造函数] */
+        console.log([1, 2, 3].toString()); /*  */
+        console.log(Object.prototype.toString.call([1, 2, 3])); /* [object Array] */
+        console.log(Object.prototype.toString.call(function() {})); /* [object Function] */
+        console.log(Object.prototype.toString.call(/abc/)); /* [object RegExp] */
+
+        class A {};
+        class B {};
+        let a = new A();
+        //  console.log(Object.prototype.toString.call(a)); /* [object A] ? [object Object] */
+
+        /* (3) instanceof 关键字 */
+        /* 作用：检查某个对象的原型对象是否在指定构造函数的原型链上面，如果在那么就返回 true，否则返回 false */
+        /* a.__proto__ == A.prototype  ? */
+        /* a.__proto__.__proto__ == A.prototype ? */
+        /* ... */
+        console.log(a instanceof A); /* true */
+        console.log(a instanceof B); /* false */
+
+        /* (4) constructor 构造器属性 */
+        console.log(a.constructor == A)
+        console.log(a.constructor == B)
+        console.log(/ABC/.constructor == RegExp);
+        console.log([1, 23, 4].constructor == Array);
+
+        /* (5) Array.isArray() */
+    </script>
+</body>
+
+</html>

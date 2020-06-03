@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //    运算符：
+        //    算术运算符：+ - * / %
+        //    逻辑运算符：逻辑非(!) 逻辑与(&&) 逻辑或(||)
+        //    关系运算符：大于(>) 小于(<) 大于等于(>=) 小于等于(<=)  相等(==) 全等(===) 不等(!=)
+        //    三元运算符：expr ? A : B
+        //    赋值运算符：+= -= *= 
+        //    自增运算符：i++ i-- | ++i 
+
+        //  注意点：
+        //    if(expr){} expr表达式里面放的不管是什么,最终都会被转换为布尔值来处理
+        //    布尔值：true | false
+        //    记住：false 0 NaN "" null undefined
+        //    if (" ") {
+        //      console.log(1)
+        //    }
+
+        // + 使用注意点
+        // (1) 数字 + 数字
+        console.log(10 + 20);
+        // (2) 数字 + 字符串(优先级更高)
+        console.log(10 + "abc"); /* 10abc */
+        // (3) 数字 + 非字符串数据
+        console.log(10 + true); /* 10 + 1 =11 */
+        console.log(10 + false); /* 10 + 0 =10 */
+        console.log(10 + null); /* 10 + 0 =10*/
+        console.log(10 + undefined); /* 10 + NaN =NaN*/
+
+        console.log(10 + {}); /* ???? "10[object Object]"*/
+        /* 转换规则：尝试把{}转换为数字，先调用内部的 valueOf方法，如果得到的仍然是引用类型的数据，那么会接着调用 toString() */
+        /* ({}).valueOf();  ==> {} */
+        /* 10 + {}.valueOf() */
+        /* 10 + {}.toString() */
+        /* 10 + "[object Object]" */
+        /* "10[object Object]" */
+
+        let o = {
+            valueOf() {
+                console.log("1");
+                return 100;
+            },
+            toString() {
+                console.log("2");
+                return "[object Object]"
+            }
+        }
+        console.log(333 + o);
+
+        /* 面试题： */
+        /*(1) [] == []   false     引用类型的数据 */
+        /*(2) [] == ![]  */
+        console.log([] == []);
+        console.log([] == ![]);
+
+        /* (1) [] == false    ![] -> false*/
+        /* (2) [] == 0        false-> 0*/
+        /* (3) [] == 0        [].valueOf() -> []*/
+        /* (4) "" == 0        [].toString() -> []*/
+        /* (4) 0 == 0         [].toString() -> []*/
+
+        /* 相等和全等 */
+        /* 相等：比较值，允许类型不同 */
+        /* 全等：值 && 类型 */
+        console.log(1 == "1"); /* true */
+        console.log(1 === "1"); /* false */
+
+        /* 注意点： */
+        console.log(null == undefined); /* true */
+        console.log(null === undefined); /* false */
+        /* NaN */
+        console.log(1 / "a");
+        console.log(NaN == NaN); /* false */
+        console.log(isNaN(1 / "a"));
+
+        /* 延伸：Object.is() */
+        /* 作用：基本上等同于全等 ===  ，但是有两点不同*/
+        /* [1] 可以比较 NaN */
+        console.log(NaN === NaN, Object.is(NaN, NaN)); /* false true */
+        /* [2] 比较-0 +0 */
+        console.log(-0 === +0, Object.is(-0, +0)); /* true false */
+
+        /* 补充：+ */
+        console.log(134 + "123"); /* "134123" */
+        console.log(134 + +"123"); /* 257     后面的+符号表示要把字符串转换为数字*/
+    </script>
+</body>
+
+</html>

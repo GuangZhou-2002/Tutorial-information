@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 数组的方法 */
+        /* [1] 基本操作方法:下面的这些方法在执行的时候都会修改数组本身 */
+        /* push 
+           pop
+           shift
+           unshift
+           splice    删除\替换\插入
+           sort      排序
+           reverse   翻转
+        */
+
+        /* [2] 基本操作方法：不会修改自己的方法 */
+        /* 
+          toString()   转换为字符串 [10,20,30] = > "10,20,30"
+          join("#")    转换为字符串 [10,20,30] = > "10#20#30"
+          indexOf(ele) 查找(左->右)，返回找到的元素对应的索引，如果没有找到那么就返回-1
+          lastIndexOf(ele)
+          includes(ele) 返回布尔值
+          map
+          filter
+          forEach
+          some
+          every
+          reduce
+          reduceRight
+        */
+
+        let arr = [10, 20, 30];
+        // let result = arr.join("#");
+        // console.log(result);
+
+        // let r = arr.map(function(item, index) {
+        //     console.log(item, index);
+        //     return item * 2;
+        // })
+
+        // console.log(r);
+
+        let r2 = arr.filter(function(item, index) {
+            console.log(index, item)
+            return item > 23;
+        });
+
+        console.log(r2)
+    </script>
+</body>
+
+</html>

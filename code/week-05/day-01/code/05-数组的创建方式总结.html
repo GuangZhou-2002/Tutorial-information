@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 数组的创建 */
+        /* [1] 字面量 */
+        /* 概念：元素(项) ，长度(length)*/
+        let arr1 = [100, 200, 300, 400];
+
+        /* [2] 构造函数创建(Array) */
+        let arr2 = new Array(); // []
+        let arr3 = new Array("a", "b", "c"); //["a","b","c"];
+        let arr4 = new Array(10, 20, 30); //[10,20,30]
+
+        /* 注意： */
+        let arr5 = new Array(4); //[,,,]  
+        console.log(arr2, arr3, arr4, arr5);
+
+        /* [3] Array.of() */
+        console.log(Array.of(3)); //[3]
+        console.log(Array.of(3, 4, 5)); //[3,4,5]
+
+        /* length */
+        let arr = [1, 2, 300];
+        arr[arr.length] = 400;
+        arr[arr.length] = 500;
+        arr[arr.length] = 600;
+        console.log(arr);
+
+        arr.length = 2;
+        console.log(arr);
+    </script>
+</body>
+
+</html>

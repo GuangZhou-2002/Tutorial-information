@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 数组的遍历 */
+        let arr = [10, "abc", "nice", 20];
+
+        /* (1) for 循环 */
+        for (let index = 0; index < arr.length; index++) {
+            const element = arr[index];
+            console.log(index, element);
+        }
+
+        /* (2) forEach循环 */
+        arr.forEach(function(ele, index) {
+            console.log(index, ele);
+        })
+
+        /* (3) for..in循环 ： 注意(主要用来遍历对象) */
+        Array.prototype.xx = "111";
+        for (let key in arr) {
+            // console.log(key, arr[key]);
+        }
+
+        /* (4) for...of循环：iterator迭代器 */
+        /* 遍历 Array Set Map 类数组(NodeList | arguments) */
+        for (let ele of arr) {
+            console.log(ele);
+        }
+
+
+        /* 对比： */
+        /* for循环： 比较麻烦 */
+        /* forEach：无法中途结束循环*/
+        /* for..in: 专门为对象设计的，遍历的时候会把原型对象的成员也遍历出来 */
+        /* for..of: ES6新特性，无法打印索引 */
+
+        // let iterator = Array.prototype[Symbol.iterator]();
+
+        // let iterator = arr.entries();
+        // console.log(iterator)
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 流程控制结构：
+        // [1] 顺序结构
+        // [2] 选择结构
+        //     * 单分支 if(expr){ }
+        //     * 双分支 if(expr){ }else{ }
+        //     * 多分支 if(expr){ }else if(){ }else{ }
+        //     * 多分支 switch
+        // [3] 循环结构
+        //     * for 循环
+        //     * while 循环
+        //     * do...while
+
+        // for(初始化条件;循环条件;更新操作){ 循环体 }
+
+        for (let i = 0; i < 8; i++) {
+            console.log("i", i);
+        }
+
+
+        /* 代码： */
+        /* instanceof 关键字*/
+        /* 语法：实例对象 instanceof 构造函数 */
+        /* 作用：检查实例对象的原型对象是否在指定构造函数的原型链上面。 */
+        /* 需求：封装函数 mockInstanceOf(instance,Constructor) */
+        /* 逻辑：instance.__proto__ == 构造函数.prototype */
+        /* 逻辑：instance.__proto__.__proto__ == 构造函数.prototype */
+
+
+        function mockInstanceOf(instance, Constructor) {
+            let A = instance.__proto__;
+            let B = Constructor.prototype;
+            while (true) {
+                if (A == null) {
+                    return false;
+                }
+                if (A == B) {
+                    return true;
+                }
+
+                A = A.__proto__;
+            }
+        }
+
+
+        function Person() {}
+        let p = new Person();
+        console.log(mockInstanceOf(p, Array));
+    </script>
+</body>
+
+</html>
