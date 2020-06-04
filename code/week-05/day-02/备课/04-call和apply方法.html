@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Function.prototype.call = function(context) {
+            context = context ? Object(context) : window;
+            context.func = this; /* 获取函数 */
+
+            /* 处理参数 */
+            let arg = [];
+            for (let i = 1; i < arguments.length; i++) {
+                arg.push(arguments[i]);
+            }
+
+            /* 执行函数 */
+            // context.func(...arg);
+            eval(`context.func(${arg})`);
+        }
+
+        /* call */
+        /* 1、修改函数内部的 this */
+        /* 2、执行函数 */
+
+        function f1() {
+            console.log("1-this->", this, arguments)
+        }
+
+        function f2() {
+            console.log("2-this->", this)
+        }
+
+        f1.call(f2, 10, 20, 30, 40);
+    </script>
+</body>
+
+</html>
