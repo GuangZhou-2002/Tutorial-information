@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* bind: 修改函数内部的 this 返回这个函数 */
+        function t(a, b) {
+            console.log("t", this, a, b)
+        }
+
+        let obj = {
+            name: "obj"
+        };
+
+        t.call(obj, 10, 20);
+
+        t.bind(obj)(22, 33);
+    </script>
+</body>
+
+</html>

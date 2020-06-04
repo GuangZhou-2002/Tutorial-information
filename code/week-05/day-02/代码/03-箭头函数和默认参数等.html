@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>我是标签</div>
+    <script>
+        /* 箭头函数：ES6新特性 */
+        /* 箭头函数的写法： */
+        let f1 = function(a, b, c) {
+            return a + b + c;
+        }
+
+        /* 基本写法 */
+        // let f2 = (a, b, c) => {
+        //    return a + b + c
+        // };
+
+        let f2 = (a, b, c) => a + b + c;
+        let f3 = (a) => a * 10;
+        let f4 = a => a * 10;
+
+        /* 简写方式： */
+        /* (1) 如果函数体只有一行，那么{}可以被省略 ，return 也可以被省略*/
+        /* (2) 如果函数的形参只有1个，那么()也可以被省略 */
+
+        /* 箭头函数的用法： */
+        /* 箭头函数的使用注意点 */
+        /* (1) 箭头函数中没有 this , 函数上下文环境(context)*/
+        /* (2) 为什么箭头函数里面没有 this ? */
+        /* (3) 箭头函数中没有 arguments , 不能直接使用  */
+
+        /* 剩余参数 */
+        /* 默认参数 */
+
+        function f5() {
+            console.log("f5", this);
+        }
+
+        f5(); /* "f5",window */
+
+        let oDiv = document.querySelector("div");
+        oDiv.onclick = function() {
+            /* 需求1：当点击标签的时候要修改标签的内容为：我是个 div */
+            /* 需求2：当点击标签的时候，等2秒后修改标签的内容为：我是个 div */
+            console.log("点击了标签");
+            // this.innerText = "我是个 div";
+
+            /* this->oDiv */
+            // let self = this;
+            // setTimeout(function() {
+
+            //     /* this->window */
+            //     console.log(this, "0")
+            //     self.innerText = "我是个 div";
+
+            // }, 2000);
+
+            setTimeout(() => {
+                console.log(this, "0")
+                this.innerText = "我是个 div";
+            }, 2000);
+
+        }
+
+
+        let f6 = function() {
+            console.log("参数", arguments);
+            let sum = 0;
+            for (let i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            }
+            return sum;
+        }
+
+        let res = f6(10, 20, 30, 40, 1, 2);
+        console.log(res)
+
+        let f7 = (a, b, ...arg) => {
+            console.log("参数", arg, a, b);
+
+            let sum = 0;
+            for (let i = 0; i < arg.length; i++) {
+                sum += arg[i];
+            }
+            return sum;
+        }
+
+        let res2 = f7(10, 20, 30, 40, 1, 2)
+        console.log(res2);
+
+        function point(x = 0, y = 0) {
+            // let x;
+            // let y;
+
+            // x = x || 0;
+            // y = y || 0;
+
+            console.log(`坐标(${x},${y})`);
+        }
+
+        point(2, 80);
+        point(30);
+        point();
+
+        /* 为什么是 undefined？ */
+        /* 函数调用的时候都做了什么？ */
+        /* (1) 把实际参数赋值给形式参数*/
+        /* (2) 执行函数体 */
+    </script>
+</body>
+
+</html>

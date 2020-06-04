@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 1、call && apply 的作用 */
+        /* [1] 修改函数内部的 this */
+        /* [2] 执行函数 */
+        let o1 = {
+            name: "zs",
+            showName() {
+                console.log("姓名：" + this.name)
+            }
+        }
+        o1.showName();
+        let o2 = {
+            name: "ls"
+        };
+        // o2.showName(); /* 报错： o2.showName is not a function */
+        o1.showName.call(o2);
+        o1.showName.apply(o2);
+
+        function f1() {
+            console.log("f1-this->", this)
+        }
+
+        f1(); /* f1 this->Window */
+        f1.call(o2); /* f1-this-> {name: "ls"} */
+        f1.apply(o2);
+
+        /* 2、call && apply 的区别 */
+        /* [1] 传递参数的方式不一样：call 以参数列表的方式传递，apply以数组的方式来传递*/
+        /* [2] call 和 apply 的形参(期望调用函数的时候传递的参数)个数不一样 */
+        /* 如何获取函数的形参个数：函数名.length */
+        /* call 方法 和 apply 方法实哪里来的？ */
+        /* 事实：JavaScript 所有的函数都能够调用 call && apply 函数 */
+        /* 联想：所有的数组都可以调用 push pop slice ... */
+        /* 答案：这两个函数被实现在 Function.prototype */
+        function f(a, b, c) {
+            console.log("f", a, b, c, this);
+        }
+
+        f.call(o2, 10, 20, 30); /* o2.f(10,20,30) */
+        f.apply(o2, [1, 2, 3]); /* f 1 2 3 {name: "ls"} */
+
+        console.log(f.call === Function.prototype.call, f.apply === Function.prototype.apply); /* true true */
+        console.log(Function.prototype.call.length) /* 1 */
+        console.log(Function.prototype.apply.length) /* 2 */
+
+
+        /* call && apply 的原理 */
+        /* 面试：call ?  */
+        // Function.prototype.mockCall = function(context) {
+        //     /* [1] 修改函数内部的 this */
+        //     /* [2] 执行函数 */
+        //     let fn = this; /* 获取函数本身 */
+        //     context.fn = fn;
+
+        //     /* 获取参数： */
+        //     console.log("arguments", arguments)
+        //     let arg = [];
+        //     for (let i = 1; i < arguments.length; i++) {
+        //         arg.push(arguments[i])
+        //     }
+        //     console.log("arg", arg);
+        //     // context.fn([10,20,44]); /* context.fn(10,20,44); */
+        //     context.fn(...arg);
+
+        //     /* 用完 fn 就删除该函数 */
+        //     Reflect.deleteProperty(context, "fn"); /* delete context.fn */
+        // }
+
+        Function.prototype.mockCall = function(context) {
+            context = context ? Object(context) : window;
+            context.fn = this;
+            context.fn(...Array.from(arguments).slice(1));
+            Reflect.deleteProperty(context, "fn");
+        }
+
+        Function.prototype.mockApply = function(context, arg) {
+            context = context ? Object(context) : window;
+            /* [1] 修改函数内部的 this */
+            /* [2] 执行函数 */
+            let fn = this; /* 获取函数本身 */
+            context.fn = fn;
+
+            if (!arg) {
+                context.fn();
+            } else {
+                context.fn(...arg);
+            }
+            Reflect.deleteProperty(context, "fn");
+        }
+
+        function t(a, b) {
+            console.log("t", this, a, b)
+        }
+        let obj = {
+            name: "obj"
+        };
+        // t.call(obj, 10, 20);
+        // t.mockCall(obj, 1000, 2200, 44, 55)
+        // t.mockApply(obj, [1, 2])
+
+        /* 如果第一个参数不是对象类型的数据，譬如实一个字符串 */
+        /* 那么在绑定的时候，会先把这个字符串包装成一个字符串对象，然后再绑定 */
+        t.call("Nice", 10, 20);
+        t.call();
+    </script>
+</body>
+
+</html>

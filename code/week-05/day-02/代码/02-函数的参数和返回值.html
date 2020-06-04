@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 函数的参数和返回值 */
+        /* 1、函数的参数 */
+        /* 001-函数的参数区分： */
+        /* 形式参数(形参)：a, b, c */
+        /* 实际参数(实参): 1,2,3 */
+        /* 002-函数的参数类型 */
+        /* 注意：函数的参数可以是任意类型的：[] obj 函数 */
+        /* 003-参数没有对齐 */
+        /* 实参数量 > 形参数量 */
+        /* 实参数量 < 形参数量 */
+        /* arguments ： 伪数组 */
+        /* 004-如何获取函数形参的数量和实参的数量 */
+        /* 函数名.length     形参的数量 */
+        /* arguments.length 实参的数量*/
+
+        /* 2、函数的返回值 */
+        /* 001-函数实可以有返回值的，通过 return 语句来返回。 */
+        /* 002-如果函数没有在函数体中显示 return ，那么函数默认总是会返回 undefined。 */
+        /* 003-函数的返回值也可以是任意类型的 */
+
+        // function f(a, b, c) {
+        //     console.log(a, b, c, a + b + c);
+        //     console.log(arguments);
+        //     // console.log(Object.prototype.toString.call(arguments)); /* [object Arguments] */
+        //     for (let i = 0; i < arguments.length; i++) {
+        //         console.log(i, arguments[i])
+        //     }
+        // }
+
+        // f(1, 2, 3);
+        // f("abc", "2", 3);
+        // f("abc", "2", ["123", "321"]); /* "abc" + "2" + ["123","321"] => "abc2123,321"*/
+        // f("abc", function() {}, ["123", "321"]);
+
+        // f(10, 20);
+        // f(10, 20, 30, 40);
+
+        // function fn(a, b, c, d, e, f) {};
+        // console.log(fn.length)
+
+        function sum(a, b) {
+            // return a + b;
+            // return [a, b];
+            // return function(){}
+        }
+        let result = sum(10, 20);
+        console.log(result);
+    </script>
+</body>
+
+</html>

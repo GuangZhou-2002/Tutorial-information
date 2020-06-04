@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* this 指向问题 */
+        /* ⚠️ 函数内部的 this 指向谁取决于函数的调用方式 */
+        /* f */
+        /* [1] 普通函数调用 f()     this->window */
+        /* [2] 对象方法调用 o.f()   this->o      */
+        /* [3] 构造函数调用 new f() this->新创建的实例对象 */
+        /* [4] 箭头函数调用 ()=>{}  this->上层作用域中的 this */
+        /* [5] 函数上下文 call apply bind   this->第一个参数 */
+    </script>
+</body>
+
+</html>
