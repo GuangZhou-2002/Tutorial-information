@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 封装函数对数组进行扁平化操作 */
+        let data = [1, 2, [3, 4, [5, 6, [10, 20]]],
+            [7, [8, [11, [222, 333, [555, [5555, 67]]]]]]
+        ];
+
+        function flatten(arr) {
+            let tmp = [];
+            arr.forEach(item => {
+                tmp = tmp.concat(item);
+            })
+            return tmp;
+        }
+
+        function tool(arr) {
+            let r = flatten(arr);
+            while (r.some(item => Array.isArray(item))) {
+                r = flatten(r)
+            }
+            return r;
+        }
+        console.log(tool(data));
+    </script>
+</body>
+
+</html>

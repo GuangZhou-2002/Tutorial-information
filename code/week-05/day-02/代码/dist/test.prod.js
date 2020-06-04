@@ -1,0 +1,1 @@
+"use strict";var arr=[1,2,[3,4,[5,6]],[7,[8]]];function flatten(r){var n=[];return r.forEach(function(r,t){n=n.concat(r)}),n}function tool(r){for(var t=flatten(r);!t.every(function(r){return!Array.isArray(r)});)t=flatten(t);return t}console.log(tool(arr));

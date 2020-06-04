@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 字符串 */
+        /* (1) 形态： */
+        /*  001 双引号  "nice" */
+        /*  002 单引号  'nice' */
+        /*  003 反引号  `Hi,My name is ${name}`  ES6新特性 */
+
+        // var str = "nice";
+        // var str2 = "Hi" + '萝卜头' + "";
+
+        /* (2) 常用方法 */
+        /* 
+        charAt(index)  获取指定的字符
+        indexOf()      查找字符串,如果找到那么就返回对应的索引，否则就返回-1
+        lastIndexOf()
+        slice()
+        substr()
+        substring()
+        split() 
+        trim()         清理字符串前后的空格 
+        */
+
+        let str = "Hi , My name is Luo.";
+        console.log(str[0], str[1], str.charAt(0));
+        console.log("a" < "c"); /* ascrII */
+        console.log(str.charCodeAt(0));
+        console.log(str.indexOf("w"));
+        console.log(str.slice(1, 3));
+
+        console.log("    qwqe    ".length) /* 12 */
+        console.log("    qwqe    ".trim().length)
+    </script>
+</body>
+
+</html>

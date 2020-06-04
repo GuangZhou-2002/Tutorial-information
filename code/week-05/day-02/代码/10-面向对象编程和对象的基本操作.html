@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 面向对象编程区别于面向过程编程： */
+        /* 面向过程：核心在于步骤(具体) */
+        /* 面向对象：核心(对象) */
+
+        /* 对象： */
+        /* 组成：属性(静态的信息) + 方法(动态的行为) */
+        /* 狗：颜色 品种 年龄 来源地 ... 跑 咬 吃 睡 抓老鼠  */
+
+        // let person = {
+        //   name:"旺财",
+        //   age:19,
+        //   address:"广州",
+        //   run:function(){},
+        //   eat:function(){},
+        //   coding:function(){}
+        //   //....
+        // }
+
+        /* ES6 新特性： */
+        let person = {
+            "background color": "#000",
+            name: "旺财",
+            age: 19,
+            address: "广州",
+            run() {
+                console.log("run")
+            },
+            eat: function() {
+                console.log("eat")
+            },
+            coding() {}
+        }
+
+        console.log(person.name, person["name"]);
+        person.run();
+        person["run"]();
+
+        /* 对象成员的两种访问方式:点语法 []语法 */
+
+        /* 遍历对象 */
+        for (let key in person) {
+            console.log(`key:${key} value:${person[key]}`)
+        }
+
+        console.log(person["background color"]);
+
+        /* 符号类型的数据也可以作为对象的 key  */
+        /* 特点：独一无二 */
+        /* 符号类型的数据写在对象中，意味着这个键值对是给自己使用的(私有的) */
+        let s1 = Symbol();
+        let s2 = Symbol();
+        console.log(s1, s2, s1 == s2) /* Symbol() Symbol() false*/
+
+        let s3 = Symbol("name");
+        let s4 = Symbol("age");
+        console.log(s3, s4) /* Symbol(name) Symbol(age) */
+
+        let obj = {
+            address: "广州",
+            class: "2002",
+            [s3]: "张三",
+            [s4]: 16
+        }
+        console.log(obj);
+
+        for (let key in obj) {
+            console.log(key, obj[key]);
+        }
+
+        console.log(Object.keys(obj)); /* 获取所有的 key ["address", "class"] */
+        console.log(Object.getOwnPropertyNames(obj)); /* ["address", "class"] */
+        console.log(Object.getOwnPropertySymbols(obj)); /* [Symbol(name), Symbol(age)] */
+        console.log(Reflect.ownKeys(obj)) /* ["address", "class", Symbol(name), Symbol(age)] */
+
+        console.log(obj[s3])
+    </script>
+</body>
+
+</html>

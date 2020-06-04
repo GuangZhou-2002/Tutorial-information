@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 事实：在 JavaScript 语言中只有对象才会有属性和方法。 */
+        // let o = {name:"zs",show(){}}
+
+        /* str 是 string 字符串类型，是基本数据类型的值，为什么这个值可以访问属性，可以调用方法？ */
+        /* 基本包装类型：JavaScript 语言为了方便我们操作字符串和数字等基本数据类型的值，提供了对应的包装类型 */
+        /* String  字符串对象类型*/
+        /* Number  数字对象类型*/
+        /* Boolean 布尔值对象类型*/
+
+        // let strObj = new String("Nice");
+        // console.log(str, strObj)
+
+        // let bool = true;
+        // let boolObj = new Boolean(true);
+        // console.log(bool, boolObj)
+
+
+        /* 内部实现原理(细节) */
+        /* 当基本数据类型的值(数字\布尔值\字符串)需要访问属性或者调用方法的时候 ，JavaScript 语言内部默认会根据当前的基本数据类型值
+           来创建一个包装类型的对象，然后通过该对象来访问属性或者是调用方法，执行完毕后这个新创建的对象会被释放。
+        */
+
+        let str = "Nice";
+
+        /* (1) let strObj = new String(str); */
+        /* (2) strObj.length  -> 4 */
+        /* (3) strObj = null; */
+
+        console.log(str.length); /* 获取字符串的长度：4 */
+
+        console.log(str.slice(1))
+
+
+        /* 面试题： */
+        let s = "我是字符串";
+
+        /* (1) let strObj = new String("我是字符串"); */
+        /* (2) strObj.name -> undefined*/
+        /* (3) strObj = null; */
+        console.log(s.name); /* undefined */
+
+
+        /* (1) let strObj = new String("我是字符串"); */
+        /* (2) strObj.name = "张三"; */
+        /* (3) strObj = null; */
+        s.name = "张三";
+
+        /* (1) let strObj = new String("我是字符串"); */
+        /* (2) strObj.name */
+        /* (3) strObj = null; */
+        console.log(s.name); /* undefined */
+
+
+        /* 严格模式： */
+        /* ES5 "use strict"; */
+    </script>
+</body>
+
+</html>

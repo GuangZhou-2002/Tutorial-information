@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 作用域：变量有效(可以被访问)的范围 */
+        /* 全局作用域：window  */
+        /* 局部作用域：函数作用域 */
+        /* 作用域链：当我们需要访问变量|函数的时候，优先在当前作用域中查找，如果找到那么就直接使用，否则就层层向上层作用域查找 */
+        // var a = 1;
+
+        // function f1() {
+        //     var a = 2;
+
+        //     function f2() {
+        //         a = 3;
+
+        //         function f3() {
+        //             /* 就近原则 */
+        //             console.log(a);
+        //         }
+        //         f3();
+        //     }
+
+        //     f2();
+        // }
+
+        // f1();
+
+
+        /* 变量和函数声明的提升 */
+        // var a;
+        // console.log("a", a);
+        // a = 123;
+
+        // f1();
+
+        // function f1() {
+        //     console.log("1")
+        // }
+        // f1();
+
+        // function f1() {
+        //     console.log("2")
+        // }
+        // f1();
+
+        // function f1() {
+        //     console.log("3")
+        // }
+        // f1();
+
+        // var f1 = function() {
+        //     console.log("4")
+        // }
+        // f1();
+
+
+        /* 
+        function f1() {
+        console.log("3")
+        }
+
+        var f1;
+         f1();
+
+         
+         f1();
+
+         
+         f1();
+
+         
+         f1();
+
+         f1 = function() {
+            console.log("4")
+         }
+         f1();
+        */
+    </script>
+</body>
+
+</html>

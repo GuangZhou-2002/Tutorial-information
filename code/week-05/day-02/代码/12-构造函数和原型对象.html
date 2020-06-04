@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 构造函数创建对象：过程(细节) */
+        function Person(name, age) {
+            /* (1) 新创建空对象 */
+            /* let  o = {} o.__proto__ -> Object.prototype */
+
+            /* (2) 设置(修改)该对象的原型对象 */
+            /* o.__proto__ = Person.prototype */
+
+            /* (3) 把 o 绑定给 this */
+            /* this = o */
+
+            /* (4) 通过 this 来给实例对象添加属性或者是方法 */
+            this.name = name || "张三";
+            this.age = age || 18;
+
+            /* (5) 默认总是会把内部新创建的实例对象返回 */
+            // return this;
+
+            /* 注意点： */
+            /* 如果没有写 return 语句，那么默认总是会把内部心创建的实例对象返回 */
+            /* 如果主动写 return 语句 */
+            /* A：return 值类型的数据 忽略*/
+            /* B: return 引用类型的数据 替换(覆盖) */
+            return [1, 2, 3, 4];
+            // return {};
+            // return 123;
+        }
+
+        let p = new Person("老王")
+        console.log(p);
+
+        /* 需求：要求自己实现函数 mockNew(Person,"老王",44); */
+        function mockNew(constructor) {
+            let args = Array.from(arguments).slice(1);
+            // console.log("args", args)
+            let o = {};
+            o.__proto__ = constructor.prototype;
+            let result = constructor.call(o, ...args); /* 修改函数内部的 this */
+            return result instanceof Object ? result : o;
+        }
+
+        let p1 = mockNew(Person, "老王", 44);
+        console.log("p1", p1);
+    </script>
+</body>
+
+</html>

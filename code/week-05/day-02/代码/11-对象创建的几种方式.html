@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 创建对象的几种方式 */
+        /* (1) 字面量创建 */
+        // let o = {};
+        // let o = {name:"zs"}
+
+        /* (2) 内置构造函数 */
+        // let o = new Object(); /* let o = {} */
+        // let o = new Object;
+        // let o = Object();
+        // o.name = "zs";
+        // o.show = function() {
+        //     console.log(this.name);
+        // }
+        // console.log(o)
+
+        /* 需求：创建三个对象描述三本书(出版社 价格 作者 名字) */
+        // let book1 = new Object();
+        // book1.press = "湖南文艺";
+        // book1.price = 38.88;
+        // book1.author = "余华";
+        // book1.name = "活着";
+
+        // let book2 = new Object();
+        // book2.press = "湖南文艺";
+        // book2.price = 25.88;
+        // book2.author = "余华";
+        // book2.name = "许三观卖血记";
+
+        // let book3 = new Object();
+        // book3.press = "百花洲文艺";
+        // book3.price = 27.88;
+        // book3.author = "顾城";
+        // book3.name = "顾城诗集";
+        // console.log(book1);
+
+        /* (3) 工厂函数创建 */
+        function createBook(press, price, author, name) {
+            let book = new Object();
+            book.press = press;
+            book.price = price;
+            book.author = author;
+            book.name = name;
+            return book;
+        }
+
+        let book1 = createBook("中华书局", 39, "黄仁宇", "万历十五年");
+        console.log(book1);
+
+        /* 存在问题：无法区分类型 */
+        function createPerson(name, age) {
+            let p = new Object();
+            p.name = name;
+            p.age = age;
+            return p;
+        }
+
+        function createDog(name, age) {
+            let d = new Object();
+            d.name = name;
+            d.age = age;
+            return d;
+        }
+
+        let p = createPerson("zs", 18);
+        let d = createDog("wc", 12);
+        console.log(p, d);
+
+        /* (4) 自定义构造函数 */
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        let p1 = new Person("lw", 23);
+        console.log(p1);
+
+        /* (5) Object.create() */
+        /* 创建对象并且设置该对象的原型对象第一个参数*/
+        let o2 = {};
+        console.log(o2);
+
+        let o3 = Object.create(null);
+        let o4 = Object.create(Array.prototype);
+        /* [1] var obj = {} */
+        /* [2] obj.__proto__ = Array.prototype */
+        console.log(o3);
+
+
+        /* (6) Object.assign() */
+        /* 合并对象 */
+        let obj1 = {
+            name: "zs"
+        }
+        let obj2 = {
+            age: 18
+        };
+
+        // obj1.age = obj2.age;
+        Object.assign(obj1, obj2, {
+            address: "广州"
+        }, {
+            id: 8888
+        });
+        console.log(obj1);
+    </script>
+</body>
+
+</html>
