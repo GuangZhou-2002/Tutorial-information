@@ -1,0 +1,1 @@
+"use strict";function f(){}Function.prototype.xxx="aaa",console.log(f);

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Function.prototype.xxx = "aaa";
+
+        // function f() {};
+
+        // function f1() {};
+        // console.log(f);
+        // console.dir(f);
+
+        /* 1.为什么 call 方法需要写在 Function.prototype ？*/
+        /* 2.call 方法的功能和特点*/
+        /*  001 修改函数中的 this 指向 */
+        /*  002 执行这个函数 */
+        /*  003 call形参为1 */
+        /*  特点 f1.call(obj,arg1,arg2);  ===  obj.f1(arg1,arg2)  */
+
+        Function.prototype.call = function(o) {
+            // console.log("call", o);
+            o = o ? Object(o) : window;
+            // console.log("this", this);
+            o.x = this;
+            // console.log("o", o);
+
+            /* 获取参数 */
+            let arg = Array.from(arguments).slice(1);
+            console.log("arguments", arguments)
+            console.log("arg", arg) /* [100,200]-> "100,200" */
+
+            o.x(...arg); /* ...展开运算符  ES6新特性 */
+            // eval("o.x(" + "arg" + ")"); // eval("o.x()") 
+        }
+
+        function f1(a, b) {
+            console.log("f1", a, b, this)
+        }
+
+        // f1();
+        // f1.call();
+        let obj = {
+            name: "zs"
+        };
+
+        f1.call(obj, 300, 200);
+        f1.call("nice", 300, 200);
+
+        // f1.call(obj,arg1,arg2);
+    </script>
+</body>
+
+</html>
