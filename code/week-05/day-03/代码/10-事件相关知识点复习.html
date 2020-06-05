@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <div onclick="alert(this.innerText)">标签|||</div> -->
+    <!-- <div onclick="task()">标签|||</div> -->
+
+    <div>标签|||</div>
+    <script>
+        /* 1、给标签绑定事件的方式(3) */
+        /* (1) 通过在标签上面写事件属性的方式来绑定 */
+        /* (2) 通过标签的事件属性来添加 */
+        /* (3) 事件监听 */
+
+        /* 2、事件对象 */
+        /* 3、事件流 */
+        /*    事件冒泡流  事件捕获流 */
+        /*    DOM标准事件流：事件捕获 处于目标 事件冒泡 */
+
+        // function task() {
+        //     console.log("-----10行代码才能做完的任务----");
+        // }
+
+        let oDiv = document.querySelector("div");
+        // oDiv.onclick = function() {
+        //     console.log("-----click事件1----");
+        // }
+
+        // oDiv.onclick = function() {
+        //     console.log("-----click事件2----");
+        // }
+
+        oDiv.addEventListener("click", function(e) {
+            console.log("-----click事件1----", e);
+        })
+
+        oDiv.addEventListener("click", function() {
+            console.log("-----click事件2----");
+        })
+    </script>
+</body>
+
+</html>

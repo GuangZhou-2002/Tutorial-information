@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person(name, address) {
+            this.name = name;
+            this.address = address;
+            this.info = "实例-info";
+        }
+
+        Person.prototype.info = "原型-info";
+        Person.prototype.showName = function() {
+            console.log("姓名：" + this.name)
+        }
+
+        let p1 = new Person("张丽莎", "广西");
+
+        /* 访问|调用规则：就近原则 */
+        console.log(p1.info)
+
+        /* var arr = [];   var arr = new Array() */
+        /* var obj = {};   var obj = new Object() */
+
+
+        /* 原型链： */
+        /* 推导过程： */
+        /* 1、我们几乎可以认为所有的对象都是由构造函数创建出来的。 */
+        /* 2、每个构造函数都有一个相关联的原型对象，默认是空对象 */
+        /* 3、原型对象也是对象，因此原型对象也是由构造函数创建出来 */
+        /* 4、原型对象的构造函数也有相关联的原型对象，这个原型对象也有构造函数 */
+        /* 以上就会形成一种链式的访问结构，原型链。 */
+        /* 原型链顶点：Object.prototype */
+        /* Object.prototype.__proto__ == null; */
+
+
+        /* 画出下面代码的原型链 */
+        let arr = new Array();
+    </script>
+</body>
+
+</html>

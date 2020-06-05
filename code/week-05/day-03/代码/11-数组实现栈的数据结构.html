@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 试着实现栈的结构 */
+        function Stack() {
+            this.top = 0;
+            this.dataStore = [];
+        }
+
+        Stack.prototype = {
+            pop() {
+                this.dataStore.pop();
+                this.top--;
+            },
+            push(ele) {
+                this.dataStore[this.top++] = ele;
+            },
+            peek() {
+                return this.dataStore[this.top - 1]
+            },
+            clear() {
+                this.top = 0;
+                this.dataStore = [];
+            }
+        }
+
+        // let stack = new Stack();
+        // stack.push("a"); //["a"]
+        // stack.push("b");
+        // stack.pop();
+
+        // let str1 = " ((  ) (( )))))( )()()() ";
+        let str1 = "()()((    ))"
+
+
+        /* 思路：*/
+        function matching(str) {
+            str = str.trim();
+            let stack = new Stack();
+            for (let i = 0; i < str.length; i++) {
+                if (str[i] == " ") continue;
+                if (stack.peek() == "(" && str[i] == ")") {
+                    stack.pop();
+                } else {
+                    stack.push(str[i]);
+                }
+                console.log("i=" + i, stack.dataStore);
+            }
+            return stack.top === 0;
+        }
+        let isMatching = matching(str1);
+        console.log(isMatching)
+    </script>
+</body>
+
+</html>

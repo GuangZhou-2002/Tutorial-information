@@ -19,7 +19,6 @@ let o2 = {};
 Object.assign(o2, o);
 console.log(o2);
 
-
 /* 深拷贝 */
 /* 特点：拷贝 N 层 ，没有共享问题*/
 /* 实现: */
@@ -43,6 +42,7 @@ console.log(o);
 console.log(o1);
 
 /* [2] deepCopy() 递归调用 */
+
 let deepClone = (val, wm = new WeakMap) => {
     if (val == null) return val;
     if (typeof val !== "object") return val;
@@ -57,4 +57,5 @@ let deepClone = (val, wm = new WeakMap) => {
     }
     return _instance;
 }
+
 ```

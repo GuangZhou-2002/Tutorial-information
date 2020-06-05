@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <iframe src="http://www.baidu.com" frameborder="0"></iframe>
+    <iframe src="http://www.wendingding.com" frameborder="0"></iframe>
+    <script>
+        /* window 核心对象：BOM为我们提供的全局对象。 */
+        /* window 和 全局作用域  */
+        /* (1) 默认全局作用域中所有的(var)变量和函数都会默认称为window的成员。 */
+        /* (2) 存在全局变量污染的问题,我们声明的全局变量可能在window中已经存在，而且它们有特殊的意义，会造成覆盖的问题。 */
+
+        // var a = 1;
+        // var b = "我是字符串";
+
+        // function showA() {
+        //     console.log("a");
+        // }
+
+        // console.log(a, window.a, a === window.a);
+
+        /* 关键：window.name 是默认存在的，它的类型必须是字符串。 */
+
+        // var name = "zs"; /* 该行代码会覆盖window原先的name */
+        // console.log(name);
+        // name = [10, 20, 30]; /* [10,20,30].toString()->"10,20,30" */
+        // console.log(typeof name, name);
+        // name = {
+        //     age: 18
+        // };
+        // console.log(name); /* {}.toString()        "[object Object]" */
+
+        /* window.length 有特殊含义：iframe标签个数 */
+        // var length = 3;
+        // console.log(length, window.length);
+
+        /* 闭包(函数作用域) */
+        // (function() {
+        //     //代码段1
+        //     var a = 1;
+        // })();
+
+        // (function() {
+        //     //代码段2
+        //     var a = 1;
+        // })();
+
+        /* ES6 模块化开发 module*/
+    </script>
+</body>
+
+</html>

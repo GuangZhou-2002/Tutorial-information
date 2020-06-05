@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* setTimeOut  延迟执行(异步任务)-回调函数->Promise->Generator->async*/
+        /* setInterval 间隔执行*/
+
+
+        /* 问题：当有多个任务(既有同步任务也有异步任务)的时候，如何执行？*/
+        /* 记住：总是先执行同步任务，然后执行异步任务(看情况) */
+        /* 单位：毫秒 (1s = 1000ms ) */
+        console.log("start");
+
+        setTimeout(function(a, b) {
+            console.log("task1", a, b)
+        }, 1000, "A", "B")
+
+        setTimeout(function() {
+            console.log("task2")
+        }, 200)
+
+        setTimeout(function() {
+            console.log("task3")
+        }, 3000)
+
+        console.log("end");
+        /* 顺序：start  ->  end  ->  task1 */
+
+
+        setInterval(function() {
+            console.log("---");
+        }, 1000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a;
+        a = 123;
+
+
+
+        /* 值类型：  数字 字符串 布尔值(栈) 保存的内容是值(就是数据本身) */
+        /* 引用类型：对象类型 保存的内容是地址(通过地址 - reference 来找到数据) */
+
+        var c;
+        c = a; /* 左值 = 右值 ： 把右边的数据(或者是变量的内容)拷贝一份赋值给左边*/
+        console.log(a, c); /* 123 123 */
+
+        a = 321;
+        console.log(a, c); /* 321 123 */
+
+        var b1;
+        b1 = {
+            name: "zs",
+            car: {
+                id: 6666,
+                info: {
+                    color: "red",
+                    run() {}
+                }
+            }
+        };
+        console.log(b1.name);
+        var b2;
+        b2 = b1;
+        b1.name = "lz";
+        console.log(b2.name, b1.name);
+
+
+
+        /* 对象的拷贝 */
+        // let o1 = {
+        //     name: "zs",
+        //     age: 18,
+        //     car: {
+        //         id: 666,
+        //         color: "red",
+        //     }
+        // };
+
+        // let o2 = {};
+
+        /* 浅拷贝：拷贝的时候只会拷贝一层，可能存在共享的关系 */
+        /* 深拷贝：拷贝的时候逐层拷贝，不存在共享的关系 */
+
+        /* 浅拷贝实现方式： */
+        /* (1) 遍历的方式逐个拷贝 */
+        // for (let key in o1) {
+        //     o2[key] = o1[key];
+        // }
+        // o1.car.id = 888;
+        // console.log(o1, o2, o1.car === o2.car);
+
+        /* (2) Object.assign() 拷贝合并对象*/
+        /* Object.assign(target,source1,source2,source3...) */
+        /* 把source1 source2 source3... 对象成员都添加到target上面 */
+        // Object.assign(o2, o1, {
+        //     address: "广州"
+        // });
+
+        // o1.car.id = 9999;
+        // console.log(o1, o2);
+
+
+        /* 深拷贝 */
+        /* (1) 利用 JSON.parse(JSON.stringify()) */
+        /* 问题1：因为JSON字符串中没有undefined 和 函数，所以如果拷贝的对象内部包含了undefined 值或者是函数 */
+        /* 问题2：如果拷贝的是正则表达式，那么拷贝完后得到的仅仅是{} */
+
+        /* (2) 封装函数deepCopy 递归 */
+        let o1 = {
+            name: "zs",
+            age: 18,
+            car: {
+                id: 666,
+                color: "red",
+            },
+            className: undefined,
+            show() {},
+            reg: /abc/,
+        };
+
+        /*JSON.stringify()  把对象转换为JSON字符串 (序列化) */
+        /*JSON.parse()      把JSON字符串转换为对象 (反序列化) */
+        /* JSON字符串主要用来进行网络通信  是数据的表示和传输的格式(XML | JSON)。 */
+        /* JavaScript提供JSON 对象，ES5提供(ECMAScript) */
+        // let json = JSON.stringify(o1);
+        // console.log(json);
+        // let obj = JSON.parse(json);
+        // console.log(obj);
+
+        let o2 = JSON.parse(JSON.stringify(o1));
+        console.log(o2);
+        o1.car.color = "#000";
+        console.log(o1, o2)
+
+
+        let deepClone = (val, wm = new WeakMap) => {
+            if (val == null) return val;
+            if (typeof val !== "object") return val;
+            if (val instanceof Date) return new Date(val);
+            if (val instanceof RegExp) return new RegExp(val);
+            if (wm.has(val)) return wm.get(val);
+
+            let _instance = new val.constructor;
+            wm.set(val, _instance);
+
+            for (let key in val) {
+                if (val.hasOwnProperty(key)) _instance[key] = deepClone(val[key], wm);
+            }
+            return _instance;
+        }
+
+
+        /* 测试代码 */
+        console.log(deepClone(null))
+        console.log(deepClone(undefined))
+        console.log(deepClone(123))
+
+        let obj1 = {
+            name: "123"
+        };
+        let obj2 = deepClone(obj1);
+        console.log(obj2 == obj1)
+    </script>
+</body>
+
+</html>
