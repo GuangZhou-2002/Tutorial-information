@@ -1,0 +1,24 @@
+<xml version=1.0>
+<root>
+  <product>
+    <name>猪肉</name>
+    <price>20.00</price>
+    <address>广州</address>
+  </product>
+  <product>
+    <name>鸡肉</name>
+    <price>10.00</price>
+    <address>湛江</address>
+  </product>
+  <product>
+    <name>鸡肉</name>
+    <price>10.00</price>
+    <address>湛江</address>
+  </product>
+</root>
+
+[
+{"name"："猪肉","price":"20.0","address":"广州"}，
+{"name"："鸡肉","price":"10.0","address":"广州"}，
+{"name"："猪肉","price":"20.0","address":"广州"}，
+]

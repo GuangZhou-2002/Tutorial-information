@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 对象的增强写法： */
+        // let o = {
+        //     name: "zs",
+        //     address: "广州",
+        //     showName: function() {
+        //         console.log("姓名:" + this.name)
+        //     },
+        //     showAddress: function() {
+        //         console.log("地址:" + this.address)
+        //     }
+        // }
+
+        /* 对象的增强写法 */
+        /* 1、对象中的方法可以省略:function */
+        /* 2、如果某个键值对中它的值是一个外部的变量或者是函数 */
+        /* 3、如果对象的key需要用一个变量的值来处理，那么不能直接写，应该[] */
+        // let name = "光头强";
+
+        // function showName() {
+        //     console.log("姓名:" + this.name)
+        // }
+
+        // let ad = "address";
+        // let o = {
+        //     name,
+        //     showName,
+        //     [ad]: "广州",
+        //     showAddress() {
+        //         console.log("地址:" + this.address)
+        //     }
+        // }
+
+        // console.log(o);
+
+        /* 对象的解构 */
+        let o = {
+            name: "熊二",
+            age: 18,
+            address: "广州"
+        };
+
+        // let name = o.name;
+        // let age = o.age;
+        // let address = o.address;
+
+        // let {
+        //     name: abc,   /* 在取值的时候改个名字 */
+        //     age,
+        //     address
+        // } = o;
+
+        // console.log(abc, age, address);
+
+        // let arr = ["光头强1号", 18, "狗熊岭"];
+        // let name = arr[0];
+        // let age = arr[1];
+        // let address = arr[2]
+
+        // let [name, age, address] = arr;
+        // console.log(name, address);
+
+
+        /* 需求：交换数据的值? */
+        let a = 100;
+        let b = 200;
+
+        /* 方案(1)：通过中间变量来处理 */
+        // let c = a;
+        // a = b;
+        // b = c;
+
+        /* 方案(2): 数组的解构语法*/
+        [b, a] = [a, b];
+        console.log(a, b);
+
+
+        /* 展开运算符 ... */
+        /* 数组[10,20,30]->10,20,30 */
+        /* 字符串 */
+        /* 类数组 */
+        let data = [10, 20, 30, 4355, 234];
+        console.log(Math.max(10, 2022, 304, 433));
+
+        // console.log(Math.max(data));  /* NaN */
+        // console.log(Math.max.apply(null, data));  /* 4355 */
+        console.log(Math.max(...data)); /* 4355 */
+
+        let str = "nice to meet u!";
+        /* 需求：把字符串中的每一个字符都拆开放在数组中*/
+        /* 方案1：循环*/
+        // let arr1 = [];
+        // for (let i = 0; i < str.length; i++) {
+        //     arr1.push(str[i])
+        // }
+        // console.log(arr1);
+
+        /* 方案2：切割 */
+        // let arr2 = str.split("");
+        // console.log(arr2);
+
+        /* 方案3：展开 */
+        // console.log([...str]);
+
+        let likeArry = {
+            0: "小强",
+            1: "小花",
+            2: "小王",
+            length: 3
+        };
+
+        /* 方案(1) : 不可行 */
+        // console.log([...likeArry]); /* 错误：likeArry is not iterable */
+
+        /* 方案(2)：循环 */
+        // let arr3 = []
+        // for (let i = 0; i < likeArry.length; i++) {
+        //     arr3.push(likeArry[i])
+        // }
+
+        // console.log(arr3);
+        /* 方案(3) */
+        // console.log(Array.from(likeArry));
+
+        /* 方案(4) */
+        // let arr4 = Array.prototype.slice.apply(likeArry);
+        // console.log(arr4);
+    </script>
+</body>
+
+</html>

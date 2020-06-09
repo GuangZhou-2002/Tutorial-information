@@ -1,0 +1,61 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-09 11:12:05
+ * @LastEditTime: 2020-06-09 11:21:04
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day22/client/04-ajax发送请求注意点03-请求超时.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <script>
+        /* 1、先获取按钮 */
+        let oDiv = document.querySelector("button");
+
+        /* 2、给按钮添加点击事件 */
+        oDiv.onclick = function() {
+
+            /* 3、发送网络请求 */
+            let xhr = new XMLHttpRequest;
+            let url = "../server/01-get.php" + "?t=" + (new Date).getTime();
+            xhr.open("GET", url);
+            xhr.send();
+
+            let timer = setTimeout(() => {
+                xhr.abort(); /* 取消网络请求 */
+                alert("请求超时，请检查您的网络");
+            }, 1);
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    /* 停止定时器 */
+                    clearTimeout(timer);
+                    if (xhr.status == 200) {
+                        console.log("请求成功:", xhr.responseText);
+                    } else {
+                        console.log("请求失败:", xhr.statusText);
+                    }
+                }
+            }
+
+            xhr.onabort = function() {
+                console.log("监听到网络请求被取消了")
+            }
+        }
+
+        /* 请求超时：我们会给网络请求设置一个请求时间(PM 10s 15s ) */
+        /* 如果网络请求的时间超过了给定的时间，那么应该提示 "请求超时，请检查您的网络",取消网络请求。 */
+    </script>
+</body>
+
+</html>

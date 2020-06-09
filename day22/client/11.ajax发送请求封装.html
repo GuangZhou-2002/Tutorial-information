@@ -1,0 +1,154 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-09 14:24:07
+ * @LastEditTime: 2020-06-09 15:37:11
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day22/client/06.ajax发送GET请求封装.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/ajax4.0.js"></script>
+
+</head>
+
+<body>
+    <button>请求A</button>
+    <button>请求B</button>
+    <button>请求C</button>
+    <button>POST请求A</button>
+    <button>POST请求B</button>
+    <script>
+        let oBtn1 = document.querySelectorAll("button")[0];
+        let oBtn2 = document.querySelectorAll("button")[1];
+        let oBtn3 = document.querySelectorAll("button")[2];
+        let oBtn4 = document.querySelectorAll("button")[3];
+        let oBtn5 = document.querySelectorAll("button")[4];
+
+        // function get() {
+        //     return "🐢";
+        // }
+
+        /* 封装：当一份代码在多个地方用到的时候需要考虑封装(函数)*/
+        /* 思路：抽取相同的代码写成函数体，不同的部分以参数的方式来处理 */
+        oBtn1.onclick = () => {
+            // get("../server/06-A.ajax.php", null,
+            //     (res) => {
+            //         console.log("成功:" + res)
+            //     }, (err) => {
+            //         console.log("失败:" + err)
+            //     })
+
+            get({
+                url: "../server/06-A.ajax.php",
+                success(res) {
+                    console.log("成功:" + res)
+                },
+                error(err) {
+                    console.log("失败:" + err)
+                }
+            })
+
+
+        }
+        oBtn2.onclick = function() {
+            // get("../server/06-B.ajax.php", null, (res) => {
+            //     alert("成功:" + res)
+            // }, (err) => {
+            //     alert("失败:" + err)
+            // })
+
+            get({
+                url: "../server/06-B.ajax.php",
+                success(res) {
+                    alert("成功:" + res)
+                },
+                error(err) {
+                    alert("失败:" + err)
+                }
+            })
+        }
+
+        oBtn3.onclick = function() {
+            // get({
+            //     user: "lw",
+            //     pwd: "123456"
+            // }, "../server/06-C.ajax.php", (res) => {
+            //     let temp = document.createElement("div");
+            //     temp.innerText = "成功:" + res;
+            //     document.body.appendChild(temp);
+            // }, (err) => {
+            //     let temp = document.createElement("div");
+            //     temp.innerText = "失败:" + err;
+            //     document.body.appendChild(temp);
+            // })
+
+            ajax({
+                type: "get",
+                url: "../server/06-C.ajax.php",
+                success: (res) => {
+                    let temp = document.createElement("div");
+                    temp.innerText = "成功:" + res;
+                    document.body.appendChild(temp);
+                },
+                error: () => {
+                    let temp = document.createElement("div");
+                    temp.innerText = "失败:" + err;
+                    document.body.appendChild(temp);
+                },
+                data: {
+                    user: "lw",
+                    pwd: "123456"
+                },
+            })
+        }
+
+        oBtn4.onclick = function() {
+            // post("../server/07.A.ajax.php", null,
+            //     (res) => console.log(res),
+            //     (err) => console.log(err)
+            // )
+
+            post({
+                url: "../server/07.A.ajax.php",
+                success(res) {
+                    console.log(res)
+                },
+                error(error) {
+                    console.log(err)
+                }
+            })
+        }
+
+        oBtn5.onclick = function() {
+            // post("../server/07.B.ajax.php", {
+            //         user: "小小熊"
+            //     },
+            //     (res) => alert(res),
+            //     (err) => alert(err)
+            // )
+
+            ajax({
+                type: "post",
+                url: "../server/07.B.ajax.php",
+                data: {
+                    user: "熊大"
+                },
+                success(res) {
+                    console.log(res)
+                },
+                error(error) {
+                    console.log(err)
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

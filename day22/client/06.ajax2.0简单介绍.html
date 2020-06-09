@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>发送请求</button>
+    <script>
+        /* AJAX2.0 https://xhr.spec.whatwg.org/ */
+
+        /* (1) formData   模拟表单数据 */
+        /* (2) onload方法  监听网络请求是否完成  == xhr.onreadytstatechange=function(){ if(xhr.readyState == 4){//...}}   */
+        /* (3) timeout/ontimeout    设置请求超时时间 */
+
+        let oBtn = document.querySelector("button");
+        // oBtn.onclick = function() {
+        //     let xhr = new XMLHttpRequest;
+        //     xhr.open("GET", "");
+        //     xhr.send();
+        //     let timer = setTimeout(() => {
+        //         xhr.abort();
+        //         alert("网络请求超时，请检查网络");
+        //     }, 10000);
+        //     xhr.onreadystatechange = function() {
+        //         if (xhr.readyState == 4) {
+        //             clearTimeout(timer);
+        //             if (xhr.status == 200) {
+        //                 console.log("success", xhr.responseText)
+        //             }
+        //         }
+        //     }
+        // }
+
+        oBtn.onclick = function() {
+            let xhr = new XMLHttpRequest;
+            xhr.open("GET", "../server/05.ajax.php");
+            xhr.send();
+            xhr.timeout = 1;
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    console.log("success", xhr.responseText)
+                }
+            }
+            xhr.ontimeout = function() {
+                alert("网络请求超时，请检查网络")
+            }
+        }
+    </script>
+</body>
+
+</html>

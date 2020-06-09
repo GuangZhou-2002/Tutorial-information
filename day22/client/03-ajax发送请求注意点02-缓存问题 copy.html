@@ -1,0 +1,55 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-09 11:02:38
+ * @LastEditTime: 2020-06-09 11:11:38
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day22/client/03-ajax发送请求注意点02-缓存问题 copy.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <script>
+        /* 1、先获取按钮 */
+        let oDiv = document.querySelector("button");
+
+        /* 2、给按钮添加点击事件 */
+        oDiv.onclick = function() {
+            /* 3、发送网络请求 */
+            let xhr = new XMLHttpRequest;
+            // let url = "../server/01-get.php" + "?t=" + Math.random();
+            let url = "../server/01-get.php" + "?t=" + (new Date).getTime();
+            xhr.open("GET", url);
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        console.log("请求成功:", xhr.responseText);
+                    }
+                }
+            }
+        }
+
+        /* 如果我们多次对同一个URL路径发送GET请求，那么得到的可能是缓存的数据(初衷是为了提高性能)。 */
+        /* 注意：有时候我们多次发请求的时候并不需要缓存数据(服务器的数据可能是实时更新的) */
+        /* 问题：如果我们不想要使用缓存，而是每次都重新请求服务器最新的数据? */
+        /* 方案：让每一次请求的URL路径都不同,在路径的后面加上一个参数(随机数 | 时间戳) */
+        // http://127.0.0.1/code/day22/server/01-get.php?t=12455
+        // http://127.0.0.1/code/day22/server/01-get.php?t=12456
+        // http://127.0.0.1/code/day22/server/01-get.php?t=23425
+
+        // http://127.0.0.1/code/day22/server/01-get.php?t=0.9981397387157853
+        // http://127.0.0.1/code/day22/server/01-get.php?t=0.822425174683564
+    </script>
+</body>
+
+</html>
