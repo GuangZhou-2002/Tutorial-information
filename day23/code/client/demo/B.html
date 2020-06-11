@@ -1,0 +1,35 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-10 13:08:40
+ * @LastEditTime: 2020-06-10 13:24:54
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day23/code/client/B.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="box"></ul>
+    <script>
+        /* 取出本地存储的数据，渲染UI即可 */
+        /* 获取本地保存的数据： */
+        let dataArr = JSON.parse(localStorage.getItem("dataArr")) || [];
+
+        let html = dataArr.map(ele => {
+            return `<li><input type="checkbox" value=${ele} checked><span>${ele}</span></li>`;
+        }).join("");
+
+        let oUl = document.querySelector("ul");
+        oUl.innerHTML = html;
+    </script>
+</body>
+
+</html>

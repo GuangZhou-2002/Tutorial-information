@@ -1,0 +1,49 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-10 13:08:22
+ * @LastEditTime: 2020-06-10 13:21:11
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day23/code/client/A.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <li><input type="checkbox" value="葡萄"><span>葡萄</span></li>
+    <li><input type="checkbox" value="香蕉"><span>香蕉</span></li>
+    <li><input type="checkbox" value="橙子"><span>橙子</span></li>
+    <li><input type="checkbox" value="西瓜"><span>西瓜</span></li>
+    <button>添加</button>
+    <a href="./B.html">跳转</a>
+    <script>
+        let oBtn = document.querySelector("button");
+        oBtn.onclick = function() {
+
+            /* 获取本地保存的数据： */
+            let dataArr = JSON.parse(localStorage.getItem("dataArr")) || [];
+            console.log(dataArr);
+
+            /* 获取选中的标签 */
+            let selectEle = document.querySelectorAll(":checked");
+
+
+            /* 加入到数组中 */
+            selectEle.forEach(ele => {
+                dataArr.push(ele.value);
+            })
+
+            /* 同步到本地存储 */
+            localStorage.setItem("dataArr", JSON.stringify(dataArr));
+        }
+    </script>
+</body>
+
+</html>

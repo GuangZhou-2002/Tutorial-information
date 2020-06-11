@@ -1,0 +1,127 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-10 10:38:46
+ * @LastEditTime: 2020-06-10 11:08:01
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day23/code/client/03-formData的基本使用.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 追加：append: ƒ append()
+        // 所有：getAll: ƒ getAll()
+        // 遍历：forEach: ƒ forEach()
+        // 读取：get: ƒ ()
+        // 设置：set: ƒ ()
+        // 检查：has: ƒ has()
+        // 删除：delete: ƒ delete()
+
+        // keys: ƒ keys()
+        // entries: ƒ entries()
+        // values: ƒ values()
+        // constructor: ƒ FormData() 构造器属性指向的构造安徽省农户
+        // Symbol(Symbol.iterator): ƒ entries() 内部的迭代器，为for...of循环提供底层的支撑
+        // Symbol(Symbol.toStringTag): "FormData"
+
+        /* (1) 创建表单对象 */
+        let formData = new FormData;
+        /* (2) 添加数据*/
+        formData.set("user", "zs");
+        formData.set("age", 18);
+        formData.set("address", "东莞");
+        /* (3) 修改数据 */
+        formData.set("address", "佛山");
+        /* (4) 删除数据 */
+        formData.delete("age");
+        /* (5) 检查是否拥有某个键值对 */
+        let hasName = formData.has("user")
+        let hasColor = formData.has("color")
+        console.log(hasName, hasColor); /* true false */
+        /* (6) 读取数据 */
+        console.log(formData.get("address"));
+
+
+        /* 请求提交参数的注意点： */
+        /* 获取广州的天气：url?city=GuangZhou */
+        /* 获取广州和上海的天气： */
+        /* A:url?city=GuangZhou&ShangHai */
+        /* B:url?city=GuangZhou&city=ShangHai      正确的写法(√)*/
+        formData.set("city", "GuangZhou");
+        // formData.set("city", "ShangHai"); /* 修改操作：覆盖 */
+        formData.append("city", "ShangHai");
+
+        /* get获取的是city对应的第一个数据 */
+        console.log(formData.get("city"))
+        console.log(formData.getAll("city"))
+        console.log("_____")
+
+
+        // let iterator = formData.entries();
+        let iterator = formData.values();
+        console.log(iterator);
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next());
+
+        // for (let ele of formData) {
+        //     console.log(ele);
+        // }
+
+        for (let [key, value] of formData) {
+            console.log(key, value);
+        }
+
+        /* () 遍历对象 */
+        // formData.forEach((val, key) => {
+        //     console.log(`key=${key},value=${val}`);
+        // })
+
+        /* 补充: */
+        let likeArray = {
+            0: "小王",
+            1: 18,
+            2: "广州",
+            [Symbol.iterator]: function() {
+                let idx = -1;
+                let self = this;
+                return {
+                    next() {
+                        ++idx
+                        return {
+                            done: idx == self.length ? true : false,
+                            value: self[idx]
+                        };
+                    }
+                }
+            },
+            length: 3
+        };
+
+
+        let it = likeArray[Symbol.iterator]();
+        console.log(it.next());
+        console.log(it.next());
+        console.log(it.next());
+        console.log(it.next());
+
+        console.log("______");
+        /* 报错：likeArray is not iterable */
+        for (let ele of likeArray) {
+            console.log(ele);
+        }
+    </script>
+</body>
+
+</html>

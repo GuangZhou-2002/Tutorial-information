@@ -1,0 +1,76 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-10 10:21:27
+ * @LastEditTime: 2020-06-10 10:38:19
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day23/code/client/02-formData的基本使用.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* Ajax 2.0 提供了新的构造函数 FormData */
+        /* 主要作用：用来模拟表单数据，发送网络请求(post请求和文件上传) */
+        /* new FormData */
+        /* 核心方法 */
+
+        // append: ƒ append()
+        // forEach: ƒ forEach()
+
+        // get: ƒ ()
+        // set: ƒ ()
+        // getAll: ƒ getAll()
+        // has: ƒ has()
+        // delete: ƒ delete()
+
+        // keys: ƒ keys()
+        // entries: ƒ entries()
+        // values: ƒ values()
+        // constructor: ƒ FormData()              构造器属性指向的构造安徽省农户
+        // Symbol(Symbol.iterator): ƒ entries()   内部的迭代器，为for...of循环提供底层的支撑
+        // Symbol(Symbol.toStringTag): "FormData"
+
+        /* in 关键字 ？？？ */
+        /* (1) for..in循环(主要遍历对象)*/
+        /* (2) 检查某个对象中是否存在指定的键值对 */
+        /* in关键字的注意点：在检查的时候会检查原型链,如果在原型链上面能够找到那么也返回true */
+        /* 方法：Object.prototype.hasOwnProperty()   */
+        /* 用法：obj.hasOwnProperty("name") */
+        /* 作用：检查obj中是否存在name这个键值对(注意：只会检查自己不会检查原型对象) */
+
+        // let obj = {
+        //     name: "zs",
+        //     age: 18,
+        // };
+
+        // console.log("age" in obj); /* true */
+        // console.log("name" in obj); /* true 检查obj对象中是否存在name这个属性|方法 */
+        // console.log("address" in obj); /* false */
+
+        // /* Reflect 反射 */
+        // console.log(Reflect.has(obj, "name"));
+        // console.log(Reflect.has(obj, "color"));
+
+        // let o = {
+        //     name: "zs"
+        // }
+        // Object.prototype.xx = "我是xxx";
+        // console.log("xx" in o) /* true */
+
+        // console.log(o.hasOwnProperty("name")); /* true */
+        // console.log(o.hasOwnProperty("age")); /* false */
+        // console.log(o.hasOwnProperty("xx")); /* false */
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-10 14:16:47
+ * @LastEditTime: 2020-06-10 14:31:45
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day23/code/client/05-formData实现文件上传.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form name="file">
+        <input type="file" name="fileName">
+    </form>
+    <button>上传</button>
+    <script>
+        let oBtn = document.querySelector("button");
+        oBtn.onclick = function() {
+            let data = new FormData(document.forms.namedItem("file"));
+            let xhr = new XMLHttpRequest;
+            xhr.open("POST", "../server/02.uplod.php");
+            console.log(xhr);
+
+            /* 只要监听到文件上传的数据大小改变就会触发该方法 */
+            /* 监听文件上传的进度： */
+            xhr.upload.onprogress = function(e) {
+
+                /* 文件上传进度：已经上传的数据大小 / 总大小  * 100 + "%" */
+                /* e.loaded   已经上传的数据大小  e.total 文件的总大小 */
+                console.log("上传进度：" + (e.loaded / e.total * 100).toFixed(2) + "%");
+            }
+
+            xhr.send(data);
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    console.log("成功:" + xhr.responseText);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

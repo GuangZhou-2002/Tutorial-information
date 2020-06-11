@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./jquery.js"></script>
+    <script>
+        /* jquery框架如何发送网络请求 */
+        // $.get("../server/03.ajax.php", (data, statusText, xhr) => {
+        //     console.log("data", data);
+        //     console.log("statusText", statusText)
+        //     console.log("xhr", xhr);
+        //     console.log(xhr.getAllResponseHeaders());
+        // });
+
+        // $.post("../server/03.ajax.php", (data, statusText, xhr) => {
+        //     console.log("data", data);
+        // });
+
+        /* 传递参数 */
+        /* 参数1：请求路径 */
+        /* 参数2：提交给服务器的数据(可以没有) */
+        /* 参数3：请求成功的回调函数*/
+        // $.post("../server/05.ajax.php", {
+        //     user: "zs",
+        //     pwd: "123455"
+        // }, function success(data, statusText, xhr) {
+        //     console.log("data", data);
+        // });
+
+        // $.ajax({
+        //     type: "post",
+        //     url: "../server/04.ajax.php",
+        //     data: {
+        //         user: "zs",
+        //         pwd: "123456"
+        //     },
+        //     success(res) {
+        //         console.log("成功", res);
+        //     }
+        // })
+
+
+        // $.ajax({
+        //     type: "post",
+        //     dataType: "json",
+        //     /* 如果配置了该参数，那么在请求成功后，该方法内部会自动的将得到的json字符串进行反序列化处理 */
+        //     url: "../server/06.ajax.php",
+        //     timeout: 1,
+        //     beforeSend() {
+        //         console.log("请求发送前会触发该方法...")
+        //     },
+        //     success(res) {
+        //         console.log("成功", res);
+        //     },
+        //     complete() {
+        //         console.log("请求完成：成功|失败")
+        //     },
+        //     error() {
+        //         console.log("请求失败|失败")
+        //     }
+        // })
+
+        /* 需求：当页面加载完发请求获取JSON数据 */
+        window.onload = function() {
+            $.getJSON("../server/data.json", function success(data) {
+                console.log("1", data);
+            });
+
+            // $.ajax({
+            //     type: "get",
+            //     dataType: "json",
+            //     url: "../server/06.getJSON.php",
+            //     success(data) {
+            //         console.log("数据", data)
+
+            //         // let obj = JSON.parse(data);
+            //         // console.log(obj);
+            //     },
+            //     error(xhr, status) {
+            //         console.log("失败", status)
+            //     }
+            // });
+        }
+    </script>
+</body>
+
+</html>

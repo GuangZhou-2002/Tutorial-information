@@ -1,0 +1,67 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-10 11:08:36
+ * @LastEditTime: 2020-06-10 14:16:24
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day23/code/client/04-formData发送网络请求.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form name="nameA"></form>
+    <form id="formId" class="form-class" name="nameB">
+        <label for="username">用户名</label>
+        <input type="text" placeholder="请输入用户名" id="username" name="user">
+        <label for="pwd">密码</label>
+        <input type="text" placeholder="请输入密码" id="pwd" name="pwd">
+    </form>
+    <button>提交</button>
+    <script>
+        /* FormData 主要用来发送POST请求来像表单一样提交参数 */
+        let oBtn = document.querySelector("button");
+        oBtn.onclick = function() {
+            /* 处理数据 */
+
+            // 方式(1)
+            let ele = document.querySelector("form");
+            // 方式(2)
+            // let ele = document.getElementsByTagName("form")[0];
+            // let ele = document.querySelectorAll("form")[0];
+            // 方式(3) 
+            // let ele = document.getElementsByClassName("form-class")[0];
+            // let ele = document.getElementById("formId");
+            // 方式(4)
+            // let ele = document.getElementsByName("nameA");
+            // 方式(5)
+            // document.forms document.images document.links
+            // console.log("document.form", document.forms[0])
+            // console.log("document.form", document.forms.namedItem("nameA"))
+
+
+            let data = new FormData(ele);
+            data.set("time", Date.now());
+
+            // data.forEach((value, key) => console.log(key, value))
+
+            let xhr = new XMLHttpRequest;
+            xhr.open("POST", "../server/01.form.php");
+            xhr.send(data);
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    console.log("成功:" + xhr.responseText);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
