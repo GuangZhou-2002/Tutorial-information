@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 500px;
+            height: 400px;
+            border: 1px solid #195;
+            box-sizing: border-box;
+            margin: 50px auto;
+        }
+        
+        h3,
+        h4 {
+            text-align: center;
+        }
+        
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 300px;
+            height: 300px;
+            background-size: cover;
+        }
+        
+        .box>div {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h3>类别名称</h3>
+        <h4>描述信息</h4>
+        <img src="./img/0.png" alt="">
+        <div id="btn">
+            <button data-xx="nz">女装</button>
+            <button data-xx="bb">包包</button>
+            <button data-xx="xz">鞋子</button>
+        </div>
+    </div>
+
+    <script>
+        let oDiv = document.querySelector("#btn");
+        let title = document.querySelector("h3");
+        let desc = document.querySelector("h4");
+        let img = document.querySelector("img");
+
+        oDiv.onclick = function(e) {
+            e = e || window.event;
+            let target = e.target || e.srcElement;
+            if (target.nodeName == "BUTTON") {
+                let type = target.dataset.xx;
+                let xhr = new XMLHttpRequest;
+                xhr.open("get", "../server/02.ajax.php");
+                xhr.send();
+                xhr.onload = function() {
+                    // console.log(xhr.responseXML)
+                    let doc = xhr.responseXML; /* 获取XML文档 */
+
+                    /* 从XML文档中提取对应的数据 */
+                    /* DOM操作-(过滤和提取) */
+                    /* 注意点：Xml在操作的时候不能使用innerText,只能使用innerHTML */
+                    console.log(doc)
+                    let ele = doc.getElementById(type);
+                    // console.log(ele.getElementsByTagName("title")[0].innerHTML);
+                    title.innerText = ele.getElementsByTagName("title")[0].innerHTML;
+                    desc.innerText = ele.getElementsByTagName("desc")[0].innerHTML;
+                    img.src = ele.getElementsByTagName("src")[0].innerHTML;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

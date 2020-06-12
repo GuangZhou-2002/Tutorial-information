@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- <div class="slider">
+        <ul class="slider-box" style="left:-1400px">
+            <li class="slider-box-item" style="background: rgb(128, 126, 206);">1</li>
+            <li class="slider-box-item" style="background: rgb(184, 121, 191);">2</li>
+            <li class="slider-box-item" style="background: rgb(16, 80, 247);">3</li>
+        </ul>
+        <div class="slider-control"><span class="prev">&lt;</span> <span class="next">&gt;</span></div>
+        <ol class="slider-nav">
+            <li class="slider-nav-item active">1</li>
+            <li class="slider-nav-item">2</li>
+            <li class="slider-nav-item">3</li>
+        </ol>
+    </div> -->
+    <script>
+        /* 分析功能： */
+        /* (1) UI界面  div>ul>li*N  + 切换标签 + 焦点 */
+        /* (2) 自动播放的功能。                */
+        /* (3) 手动的点击切换显示上一张和下一张。 */
+        /* (4) 支持手动点击焦点来实现切换。      */
+        /* (5) 当鼠标移入到轮播图的时候，应该停止滚动，离开的时候恢复 */
+        /* (6) 当切换显示的时候，焦点能同步切换 */
+        /* (7) 应该能够支持复用。*/
+
+        class Slider {
+            constructor(data) {
+                this.data = data;
+                this.slider = null;
+                this.sliderBox = null;
+                this.sliderControl = null;
+                this.sliderNav = null;
+            }
+            init() {
+                this.createUI();
+                this.setSliderItemBackgroundColor(); //设置背景颜色
+            }
+            createUI() {
+                this.createSliderNav();
+                this.createSliderBox();
+                this.createSliderControl();
+
+                this.slider = document.createElement("div");
+                this.slider.className = "slider";
+                this.slider.appendChild(this.sliderBox);
+                this.slider.appendChild(this.sliderControl);
+                this.slider.appendChild(this.sliderNav);
+                document.body.appendChild(this.slider);
+            }
+            createSliderBox() {
+                this.sliderBox = document.createElement("ul");
+                this.sliderBox.className = "slider-box";
+                this.sliderBox.innerHTML = this.data.map(item => `<li class="slider-box-item">${item}</li>`).join("");
+            }
+            createSliderControl() {
+                this.sliderControl = document.createElement("div");
+                this.sliderControl.className = "slider-control";
+                this.sliderControl.innerHTML = `<span class="prev">&lt;</span> <span class="next">&gt;</span>`;
+            }
+            createSliderNav() {
+                this.sliderNav = document.createElement("ol");
+                this.sliderNav.className = "slider-nav";
+                this.sliderNav.innerHTML = this.data.map(item => `<li class="slider-nav-item">${item}</li>`).join("");
+            }
+            setSliderItemBackgroundColor() {
+                Array.from(this.sliderBox.children).forEach(item => item.style.background = this.getRandomColor())
+            }
+            getRandomColor() {
+                let r = parseInt(Math.random() * 256);
+                let g = parseInt(Math.random() * 256)
+                let b = parseInt(Math.random() * 256)
+                return `rgb(${r},${g},${b})`;
+            }
+        }
+
+        let slider = new Slider(["1", "2", "3", "4", "5"])
+        slider.init();
+    </script>
+</body>
+
+</html>

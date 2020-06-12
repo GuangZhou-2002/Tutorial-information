@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <button>添加</button>
+        <button>查询</button>
+        <button>修改</button>
+        <button>删除</button>
+        <button>清空</button>
+    </div>
+    <script>
+        let oDiv = document.getElementsByTagName("div")[0];
+        oDiv.onclick = function(e) {
+            e = e || window.event;
+            let target = e.target || e.srcElement;
+            if (target.nodeName == "BUTTON") {
+                if (target.innerText == "添加") {
+
+                    localStorage.setItem("id", "111");
+                    localStorage.setItem("color", "red");
+                    localStorage.setItem("class", "H5");
+                    // sessionStorage["class"] = "java";
+                    // sessionStorage.id = "888";
+                }
+                if (target.innerText == "修改") {
+                    window.localStorage.setItem("color", "yellow");
+                }
+                if (target.innerText == "查询") {
+                    console.log(window.localStorage.getItem("id"))
+                }
+                if (target.innerText == "删除") {
+                    window.localStorage.removeItem("class");
+                }
+                if (target.innerText == "清空") {
+                    window.localStorage.clear();
+                }
+
+            }
+        }
+
+        /* (1) window可以省略不写 */
+        /* (2) 因为sessionStorage && localStorage本身就是对象，所以可以直接像对象那样操作 */
+        /* (3) 特点  */
+        /*     001 存储在本地，没有时间的限制 */
+        /*     002 存储的数据更大(Cookie<4kb SessionStorage<5M localStorage < 20M) */
+    </script>
+</body>
+
+</html>

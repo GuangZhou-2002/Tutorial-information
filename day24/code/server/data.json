@@ -1,0 +1,17 @@
+{
+    "bb": {
+        "title": "最靓的包包",
+        "desc": "买最贵的包，挨最痛的打",
+        "src": "./img/2.png"
+    },
+    "nz": {
+        "title": "漂亮女装",
+        "desc": "清仓处理，只卖9998",
+        "src": "https://img10.360buyimg.com/n1/s350x449_jfs/t1/112726/5/8253/94776/5ecc9c41E9a4c35dd/829586ef686f3ca4.jpg!cc_350x449.jpg"
+    },
+    "xz": {
+        "title": "品牌男鞋",
+        "desc": "老板跟小姨子跑路了，清仓大甩卖",
+        "src": "./img/3.jpg"
+    }
+}

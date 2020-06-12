@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* ES6特性：Class->取代自定义构造函数的写法 */
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.show = function() {
+        //         console.log("this.showName");
+        //     }
+        // }
+
+        // Person.prototype.showAge = function() {
+        //     console.log("年龄:" + this.age)
+        // }
+
+        // Person.prototype.showName = function() {
+        //     console.log("姓名:" + this.name)
+        // }
+
+        // let p = new Person("zs", 19);
+        // console.log(p);
+
+        /* javascript 是一门支持面向对象编程|面向过程编程|函数式编程，编程范式。 */
+        /* 主流的面向对象编程语法：java C++ C# ... PHP 都拥有class（类） */
+
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+                this.show = function() {
+                    console.log("show +++ ")
+                };
+            }
+            showName() {
+                console.log("姓名:" + this.name)
+            }
+            showAge() {
+                console.log("年龄:" + this.age)
+            }
+        }
+
+        let p = new Person("ls", 21);
+        console.log(p);
+    </script>
+</body>
+
+</html>

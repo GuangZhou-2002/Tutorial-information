@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<root>
+  <product id="nz">
+    <title>漂亮女装</title>
+    <desc>清仓处理，只卖9998</desc>
+    <src>./img/1.png</src>
+  </product>
+  <product id="bb">
+    <title>最靓的包包</title>
+    <desc>买最贵的包，挨最痛的打</desc>
+    <src>./img/2.png</src>
+  </product>
+  <product id="xz">
+    <title>品牌男鞋</title>
+    <desc>老板跟小姨子跑路了，清仓大甩卖</desc>
+    <src>./img/3.jpg</src>
+  </product>
+</root>

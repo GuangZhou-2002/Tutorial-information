@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        input {
+            margin-left: 20px;
+            width: 300px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text">
+    <ul></ul>
+    <script>
+        /* 1、提供函数声明 */
+        function xx(obj) {
+            /* 把得到的结果处理成li标签显示在页面中 */
+            let oUl = document.querySelector("ul");
+            let data = obj["g"];
+            let html = data.map(item => `<li>${item.q}</li>`).join("");
+            oUl.innerHTML = html;
+        }
+    </script>
+    <script>
+        /* 2、获取页面的输入框，并且监听内容变化 */
+        let oInput = document.querySelector("input");
+        oInput.oninput = function() {
+            /* 3、先获取输入框的内容 */
+            let val = this.value;
+            if (val.length == 0) return;
+
+            //  https://www.baidu.com/sugrec?callback=fn&prod=pc_hao123&wd=wbq
+
+            /* 4、创建script标签，设置src路径，插入到页面中。 */
+            let script = document.getElementById("scriptId"); /* 存在|不存在 */
+            if (script) {
+                document.body.removeChild(script);
+            }
+            script = document.createElement("script");
+            script.id = "scriptId";
+            script.src = "https://www.baidu.com/sugrec?callback=xx&prod=pc_hao123&wd=" + val;
+            document.body.appendChild(script);
+        }
+    </script>
+
+</body>
+
+</html>

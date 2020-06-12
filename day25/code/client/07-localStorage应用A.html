@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <h1>水果</h1>
+        <li><input type="checkbox" value="苹果">苹果</li>
+        <li><input type="checkbox" value="香蕉">香蕉</li>
+        <li><input type="checkbox" value="西瓜">西瓜</li>
+    </ul>
+    <a href="./07-localStorage应用B.html">查看选中的水果</a>
+    <script>
+        /* 0、准备数据 */
+        let data = JSON.parse(localStorage.getItem("selectArr")) || [];
+        console.log(data);
+
+        /* 1、先获取复选框标签 */
+        let oInput = document.querySelector("ul");
+
+        /* 2、通过事件委托来添加监听 */
+        oInput.onclick = function(e) {
+            e = e || window.event;
+            let target = e.target || e.srcElement;
+            if (target.nodeName == "INPUT") {
+                console.log(target.checked)
+
+                /* 如果当前标签是勾选的，那么就加入到数组 */
+                /* 如果当前标签没有勾选，那么就移除出数组 */
+                if (target.checked) {
+                    data.push(target.value);
+                } else {
+                    let index = data.indexOf(target.value);
+                    data.splice(index, 1);
+                }
+                console.log(data);
+
+                /* 数据已经处理完毕，把数据保存到本地 */
+                localStorage.setItem("selectArr", JSON.stringify(data));
+            }
+        }
+    </script>
+</body>
+
+</html>

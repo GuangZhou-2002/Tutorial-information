@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="slider">
+        <ul class="slider-box" style="left:-1400px">
+            <li class="slider-box-item" style="background: rgb(128, 126, 206);">1</li>
+            <li class="slider-box-item" style="background: rgb(184, 121, 191);">2</li>
+            <li class="slider-box-item" style="background: rgb(16, 80, 247);">3</li>
+            <li class="slider-box-item" style="background: rgb(134, 12, 63);">4</li>
+            <li class="slider-box-item" style="background: rgb(54, 230, 69);">5</li>
+            <li class="slider-box-item" style="background: rgb(159, 190, 171);">6</li>
+        </ul>
+        <div class="slider-control"><span class="prev">&lt;</span> <span class="next">&gt;</span></div>
+        <ol class="slider-nav">
+            <li class="slider-nav-item active">1</li>
+            <li class="slider-nav-item">2</li>
+            <li class="slider-nav-item">3</li>
+            <li class="slider-nav-item">4</li>
+            <li class="slider-nav-item">5</li>
+            <li class="slider-nav-item">6</li>
+        </ol>
+    </div>
+    <script>
+        /* 分析功能： */
+        /* (1) UI界面  div>ul>li*N  + 切换标签 + 焦点 */
+        /* (2) 自动播放的功能。                */
+        /* (3) 手动的点击切换显示上一张和下一张。 */
+        /* (4) 支持手动点击焦点来实现切换。      */
+        /* (5) 当鼠标移入到轮播图的时候，应该停止滚动，离开的时候恢复 */
+        /* (6) 当切换显示的时候，焦点能同步切换 */
+        /* (7) 应该能够支持复用。*/
+
+        class Slider {
+            constructor(data) {
+                this.data = data;
+            }
+            init() {
+                this.createUI();
+                this.autoPlayer();
+            }
+            createUI() {
+
+            }
+            autoPlayer() {
+
+            }
+        }
+
+        // let slider = new Slider(["", "", ""])
+        // slider.init();
+    </script>
+</body>
+
+</html>

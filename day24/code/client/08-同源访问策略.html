@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* ?  */
+        var xhr = new XMLHttpRequest;
+        xhr.open("get", "http://127.0.0.1/code/day24/code/server/03.get.php", true);
+
+        /* 注意：网络请求失败(越界-跨域了) */
+        // xhr.open("get", "http://www.baidu.com", true);
+        xhr.send();
+        xhr.onload = () => {
+            if (xhr.status == 200) {
+                console.log("success", xhr.responseText);
+            } else {
+                console.log("error", xhr.statusText);
+            }
+        }
+
+        // 当前路径：http://127.0.0.1/code/day24/code/client/08-xxx.html
+        // 请求路径：http://127.0.0.1/code/day24/code/server/03.get.php
+
+        /* 同源(相同的域)：协议 + 端口号 + 主机相同 */
+        // 当前路径：http://127.0.0.1/code/day24/code/client/08-xxx.html
+        // 请求路径：http://www.baidu.com
+
+        // (安全机制)
+        // 浏览器存在同源访问策略，就是我们在发送Ajax网络请求的时候，只有在同源的情况下才能成功，如果跨域了那么则无法处理(失败)
+
+        //file:///Applications/MAMP/htdocs/code/day24/code/client/08-xxx.html
+        //http://127.0.0.1/code/day24/code/server/03.get.php
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/Slider.js"></script>
+</head>
+
+<body>
+    <script>
+        window.onload = function() {
+            var xhr = new XMLHttpRequest;
+            xhr.open("get", "../server/data.json", true);
+            xhr.send();
+            xhr.onload = () => {
+                if (xhr.status == 200) {
+                    console.log("success", xhr.responseText);
+                    let data = JSON.parse(xhr.responseText);
+                    (new Slider(data)).init();
+
+                    (new Slider(["http://img2.imgtn.bdimg.com/it/u=3984473917,238095211&fm=26&gp=0.jpg",
+                        "http://img5.imgtn.bdimg.com/it/u=3008142408,2229729459&fm=26&gp=0.jpg",
+                        "http://img2.imgtn.bdimg.com/it/u=2462146637,4274174245&fm=26&gp=0.jpg"
+                    ])).init();
+                    (new Slider(data)).init();
+
+                } else {
+                    console.log("error", xhr.statusText);
+                }
+            }
+
+
+
+        }
+    </script>
+</body>
+
+</html>

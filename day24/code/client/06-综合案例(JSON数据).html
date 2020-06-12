@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 500px;
+            height: 400px;
+            border: 1px solid #195;
+            box-sizing: border-box;
+            margin: 50px auto;
+        }
+        
+        h3,
+        h4 {
+            text-align: center;
+        }
+        
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 300px;
+            height: 300px;
+            background-size: cover;
+        }
+        
+        .box>div {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h3>类别名称</h3>
+        <h4>描述信息</h4>
+        <img src="./img/0.png" alt="">
+        <div id="btn">
+            <button data-xx="nz">女装</button>
+            <button data-xx="bb">包包</button>
+            <button data-xx="xz">鞋子</button>
+        </div>
+    </div>
+    <script src="./jquery-3.4.1.js"></script>
+    <script>
+        /* 委托<div id="btn">标签给内部的按钮添加点击事件，当点击事件被触发的时候就执行回调函数，this指向的是当前的标签 */
+        $("#btn").on("click", "button", function() {
+            let type = $(this).attr("data-xx"); // let type = $(this).data("xx"); // let type = this.dataset.xx;
+            $.ajax({
+                url: "../server/01.ajax.php",
+                dataType: "json",
+                data: `type=${type}`,
+                success(data) {
+                    /* 根据获取的响应数据来渲染UI */
+                    $("h3").text(data.title);
+                    $("h4").text(data.desc);
+                    $("img").attr("src", data.src);
+                }
+            })
+        })
+    </script>
+
+    <script>
+        // let oDiv = document.querySelector("#btn");
+        // let title = document.querySelector("h3");
+        // let desc = document.querySelector("h4");
+        // let img = document.querySelector("img");
+
+        // oDiv.onclick = function(e) {
+        //     e = e || window.event;
+        //     let target = e.target || e.srcElement;
+        //     if (target.nodeName == "BUTTON") {
+        //         // let type0 = target.getAttribute("data-xx");
+        //         // console.log(type0, type);
+        //         let type = target.dataset.xx;
+
+        //         let xhr = new XMLHttpRequest;
+        //         xhr.open("get", "../server/01.ajax.php?type=" + type);
+        //         xhr.send();
+        //         xhr.onload = function() {
+        //             /* JSON数据的解析 */
+        //             let data = JSON.parse(xhr.responseText);
+        //             console.log(data);
+        //             /* 渲染UI */
+        //             title.innerText = data.title;
+        //             desc.innerText = data.desc;
+        //             // img.setAttribute("src",data.src);
+        //             img.src = data.src;
+        //         }
+
+        //     }
+        // }
+    </script>
+
+
+</body>
+
+</html>.

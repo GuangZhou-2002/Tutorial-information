@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box t box2 box3">我是div</div>
+    <script>
+        let oDiv = document.querySelector("div");
+
+        /* 1、className  */
+        /* 读取：oDiv.className === oDiv.getAttribute("class")*/
+        // console.log(oDiv.className, oDiv.getAttribute("class"));
+
+        /* 设置：oDiv.className = "box1" === oDiv.setAttribute("class","box1") */
+        // oDiv.className = "box1";
+        // oDiv.setAttribute("class", "box1")
+
+        /* 2、classList */
+        // oDiv.className = oDiv.className + "t";
+        console.log(oDiv.classList);
+        /* DOMTokenList(4) ["box", "t", "box2", "box3", value: "box t box2 box3 "] */
+
+        // console.log(oDiv.classList.value);
+        oDiv.classList.forEach(ele => console.log(ele));
+
+        /* add方法：添加新的样式，如果该样式在标签上已经应用那么就忽略 */
+        oDiv.classList.add("box2");
+        oDiv.classList.add("box4");
+
+        // console.log(oDiv.classList.contains("txt"));
+        oDiv.classList.replace("t", "ttt");
+    </script>
+</body>
+
+</html>

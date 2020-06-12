@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./js/Cookie.js"></script>
+    <button>按钮</button>
+    <script>
+        document.cookie = "userID=324254u73348274242;path=/code/day25/code";
+        document.cookie = "pvID=3245436465;path=/code/day25/code";
+
+        let oBtn = document.getElementsByTagName("button")[0];
+        oBtn.onclick = function() {
+            var xhr = new XMLHttpRequest;
+            xhr.open("post", "../server/01.ajax.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+            xhr.send("username=zs&pwd=123456");
+            xhr.onload = () => {
+                if (xhr.status == 200) {
+                    console.log("success", xhr.responseText);
+                } else {
+                    console.log("error", xhr.statusText);
+                }
+            }
+        }
+
+        /* 我们在发送网络请求的时候，默认会把当前的Cookie数据一起提交给服务器。 */
+        /* Cookie是放在哪里提交给服务器的？ */
+        /* 请求头：Cookie: userID=324254u73348274242; pvID=3245436465 */
+    </script>
+</body>
+
+</html>

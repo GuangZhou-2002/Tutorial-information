@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/Slider.js"></script>
+</head>
+
+<body>
+    <script>
+        /* 分析功能： */
+        /* (1) UI界面  div>ul>li*N  + 切换标签 + 焦点 */
+        /* (2) 自动播放的功能。                */
+        /* (3) 手动的点击切换显示上一张和下一张。 */
+        /* (4) 支持手动点击焦点来实现切换。      */
+        /* (5) 当鼠标移入到轮播图的时候，应该停止滚动，离开的时候恢复 */
+        /* (6) 当切换显示的时候，焦点能同步切换 */
+        /* (7) 应该能够支持复用。*/
+
+        let slider = new Slider(["./src/1.jpg", "./src/2.jpg", "./src/3.jpg", "./src/4.jpg"])
+        slider.init();
+    </script>
+</body>
+
+</html>

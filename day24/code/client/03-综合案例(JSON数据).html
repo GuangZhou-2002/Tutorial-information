@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 500px;
+            height: 400px;
+            border: 1px solid #195;
+            box-sizing: border-box;
+            margin: 50px auto;
+        }
+        
+        h3,
+        h4 {
+            text-align: center;
+        }
+        
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 300px;
+            height: 300px;
+            background-size: cover;
+        }
+        
+        .box>div {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1" data-xx="xasda" title="标题" data-info="sadf">测试</div>
+    <div class="box">
+        <h3>类别名称</h3>
+        <h4>描述信息</h4>
+        <img src="./img/0.png" alt="">
+        <div id="btn">
+            <button xx="nz">女装</button>
+            <button xx="bb">包包</button>
+            <button xx="xz">鞋子</button>
+        </div>
+    </div>
+
+    <script>
+        // let oDiv = document.querySelector("#btn");
+        // oDiv.onclick = function(e) {
+        //     e = e || window.event;
+        //     let target = e.target || e.srcElement;
+        //     if (target.nodeName == "BUTTON") {
+        //         let type = target.
+        //     }
+        // }
+    </script>
+    <script>
+        /* 属性节点：class="box1" xx="xasda" title="标题" y="sad" info="sadf" */
+        /* 1、所有的属性节点都被保存到当前标签的attributes属性上面。 */
+        /* 2、 操作属性节点 */
+        /* (1) 获取属性节点 */
+        /* 001- ele.attributes[key] ex:ele.attributes["info"] -> info="234"*/
+        /* 002- ele.getAttribute("info") */
+        /* (2) 常用的class和title可以有快捷访问方法 */
+        /*  ele.className  ele.title */
+        /* (3) DOM规范建议如果是自定义的属性节点,总是在前面加上data- */
+        /*     好处：我们可以通过ele.dataSet来获取自定义的属性 */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul></ul>
+    <script>
+        /* 1、先尝试读取本地存储的数据 */
+        let arr = JSON.parse(localStorage.getItem("selectArr")) || [];
+
+        /* 2、渲染标签 */
+        document.querySelector("ul").innerHTML = arr.map(item => `<li>${item}</li>`).join("");
+    </script>
+</body>
+
+</html>
