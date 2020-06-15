@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+    <!-- 建议：总是把script标签写在body结束标签的前面 -->
+    <script>
+        /* 原生的JavaScript监听 */
+        // window.onload = function() {
+        //     /* 1、为什么要监听页面的加载? 我们需要保证，等页面加载完(DOM渲染完)再执行js代码，避免无法获取标签的问题*/
+        //     /* 2、JavaScript如何监听页面的加载? window.onload方法，该方法用来监听页面的加载，等页面加载完毕之后才会触发该函数*/
+        //     let oDiv = document.getElementsByTagName("div")[0];
+        //     oDiv.innerText = "内容";
+        //     console.log(oDiv);
+        // }
+
+        /* jQuery监听 */
+        // console.log($, jQuery, $ === jQuery)
+        // jQuery(document).ready(function() {
+        //     let oDiv = document.getElementsByTagName("div")[0];
+        //     oDiv.innerText = "内容";
+        //     console.log(oDiv);
+        // })
+
+        // $().ready(function() {
+        //     let oDiv = document.getElementsByTagName("div")[0];
+        //     oDiv.innerText = "内容";
+        //     console.log(oDiv);
+        // })
+
+        // $(() => {
+        //     let oDiv = document.getElementsByTagName("div")[0];
+        //     oDiv.innerText = "内容";
+        //     console.log(oDiv);
+        // })
+
+        /* 简写形式 */
+        /* jQuery->$ */
+        /* document->省略不写 */
+        /* ready->省略不写 */
+        // $(function() { });
+
+        /* 重点：jQuery监听页面的加载和JavaScript原生监听页面加载有什么区别？ */
+        /* [1]  监听的时机不一样 */
+        /*      window.onload 监听的页面加载完毕(DOM\IMG\CSS\JS) Load*/
+        /*      jQuery 监听的页面加载完毕(DOM) DOMContentLoaded*/
+        /* [2]  监听多次 */
+        /*      window.onload  监听多次，存在覆盖的问题，只会触发最后一次 */
+        /*      jQuery         监听多次，可以支持N次*/
+        window.onload = function() {
+            console.log("onload", "A");
+        }
+        window.onload = function() {
+            console.log("onload", "B");
+        }
+        window.onload = function() {
+            console.log("onload", "C");
+        }
+
+        $(function() {
+            console.log("jQ", 1)
+        })
+
+        $(function() {
+            console.log("jQ", 2)
+        })
+
+        $(function() {
+            console.log("jQ", 3)
+        })
+    </script>
+    <div></div>
+    <span></span>
+
+
+
+</body>
+
+</html>

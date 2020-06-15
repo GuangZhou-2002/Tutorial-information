@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 100px;
+            background: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demoID" title="标签" xx="信息">我就是</div>
+    <span>spanA</span>
+    <span>spanB</span>
+
+    <div class="box">
+        111111 222222
+    </div>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        /* DOM操作 */
+        /* 1、创建标签 */
+        /* 原生:document.createElement("div") */
+        // $("<div></div>")   创建div
+
+        /* 需求：创建div，设置该标签的内容为我是div,设置class为box 并且把该标签插入到页面中 */
+        // let oDiv = document.createElement("div");
+        // oDiv.innerText = "我是div";
+        // oDiv.className = "box";
+        // document.body.appendChild(oDiv);
+
+        /* jQuery写法 */
+        // let oDiv = $("<div></div>");
+        // oDiv.text("我是div");
+        // oDiv.addClass("box");
+        // $("body").append(oDiv);
+
+        /* 简写 */
+        // $("body").append($("<div class='box'>我是div哈哈哈哈</div>"));
+
+        /* 2、设置标签 */
+        /* jQ.text() === innerText 操作的是文本内容*/
+        /* jQ.html() === innerHTML 操作的是节点内容*/
+        /* 使用：如果没有传递参数，那么表示要读取标签的内容，如果传递了参数表示要设置标签的内容 */
+        // $("#demoID").text("哈哈");
+        // console.log($("#demoID").text()); /* 读取标签的内容 */
+
+        /* 选中多个标签的情况 */
+        // $("span").text("11111"); /* 批量设置所有选中标签的内容为1111 */
+        // console.log($("span").text()) /* 多个标签的文本内容会连在一起返回给我们 spanAspanB */
+
+        // $("span").html("<h1>112222</h1>");
+        // console.log($("span").html()) /* 注意：总是会获取第一个标签中的节点内容返回  */
+
+        /* 3、插入标签 */
+        /* A.append(B)   把B插入到A中内容的后面成为A的子标签*/
+        /* B.appendTo(A) 把B插入到A中内容的后面成为A的子标签*/
+        /* jQ.prepend()  前面*/
+
+        // $(".box").append($("<span>我是span</span>"));
+        // $(".box").prepend($("<span>我是span</span>"));
+
+        /* 4、清空标签:当前标签还在，仅仅只是删除该标签的内容 */
+        // $(".box").html("");
+        // $(".box").empty();
+
+        /* 5、删除标签：当前标签没有了 */
+        // $("#demoID").remove();
+
+        /* 6、操作标签的属性节点 */
+        /* jQ.attr() | jQ.attr(key) 读取  jQ.attr(key,value) 设置 */
+        /* jQ.removeAttr()  删除标签的属性节点 */
+        // console.log($("#demoID").attr("xx"))
+        // $("#demoID").attr("xx", "我是信息");
+        $("#demoID").removeAttr("xx");
+    </script>
+
+</body>
+
+</html>

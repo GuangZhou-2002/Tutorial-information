@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .box {
+            width: 583px;
+            height: 500px;
+            margin: 20px auto;
+            border: 1px solid #000;
+        }
+        
+        .header {
+            width: 583px;
+            height: 40px;
+            line-height: 40px;
+        }
+        
+        .header li {
+            width: 140px;
+            float: left;
+            text-align: center
+        }
+        
+        img {
+            width: 583px;
+            /* height: 40px; */
+        }
+        
+        .content div {
+            display: none
+        }
+        
+        .content .current {
+            display: block
+        }
+        
+        .active {
+            color: red;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="header">
+            <ul>
+                <li class="active">酷玩电器</li>
+                <li>联想电脑</li>
+                <li>戴尔台机</li>
+                <li>惠普笔记本</li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="current"><img src="./img/01.webp" alt=""></div>
+            <div><img src="./img/02.webp" alt=""></div>
+            <div><img src="./img/03.webp" alt=""></div>
+            <div><img src="./img/04.webp" alt=""></div>
+        </div>
+    </div>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        /* 逻辑：当鼠标移入到li标签的时候，设置当前标签的选中状态(排它)，并且切换显示对应的内容 */
+        /* 原生的JavaScript的代码 */
+        // let lis = document.querySelectorAll("li");
+        // let divs = document.querySelector(".content").children;
+
+        // for (let i = 0; i < lis.length; i++) {
+        //     let li = lis[i];
+        //     li.onmouseenter = function() {
+        //         Array.from(lis).forEach(ele => ele.classList.remove("active"));
+        //         this.classList.add("active");
+
+        //         Array.from(divs).forEach(ele => ele.classList.remove("current"));
+        //         divs[i].classList.add("current");
+        //     }
+        // }
+
+        /* jQuery实现 */
+
+        /* 先获取页面中所有的li标签，给这些li标签都添加鼠标移入事件 */
+        $("li").mouseenter(function() {
+            let index = $(this).index();
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".content").children().eq(index).addClass("current").siblings().removeClass("current");
+
+            /* JQ.index()     获取的是当前标签的角标(索引) */
+            /* jQ.siblings()  获取的是所有的兄弟节点对象(jq对象)*/
+            /* jQ.children()  获取的是当前标签的子节点对象(jq对象)*/
+            /* jQ.eq(index)   获取所有选中标签中的某个标签，并包装成jQuery对象返回 */
+            /* jQ.get(index)  获取所有选中标签中的某个子标签 */
+            /* 公式：jQ.eq(index) == $(jQ.get(index)) */
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        /* 筛选选择器：eq first last odd even lt gt not */
+
+        $(function() {
+            /* 1、获取指定的某个标签来设置样式 */
+            // $("li:eq(2)").css("background", "red");
+            // $("li").eq(2).css("background", "red");
+
+            /* 2、获取所有li标签中第一个标签来设置 */
+            // $("li").eq(0).css("background", "red");
+            // $("li:first").css("background", "green");
+            // $("li").first().css("background", "yellow");
+
+            /* 3、获取所有li标签中最后个标签来设置 */
+            // $("li").eq(9).css("background", "red");
+            // $("li").eq(-1).css("background", "red");
+            // $("li:last").css("background", "green");
+            // $("li").last().css("background", "green");
+
+            /* 4、获取所有索引值为奇数|偶数的标签来设置样式 */
+            // $("li:odd").css("background", "green");
+            // $("li:even").css("background", "red");
+
+            /* 5、获取索引值小于5的所有标签来设置样式 */
+            // $("li:lt(5)").css("background", "#234");
+            // $("li:gt(5)").css("background", "#234");
+
+            /* 6、获取所有的li标签除了索引为2的标签之外 */
+            // $("li:not(:eq(2))").css("background", "#934");
+            // $("li:not(:first)").css("background", "#934");
+        })
+    </script>
+</body>
+
+</html>

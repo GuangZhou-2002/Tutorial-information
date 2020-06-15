@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>我是div</div>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        $(function() {
+            /* jQuery操作标签的CSS */
+            /* 语法：
+              jQ.css(key)        获取标签的指定的样式
+              jQ.css(key,value)  设置标签的样式
+              jQ.css({})         设置标签的样式(可以一次性设置多个样式)
+            */
+
+            /* 1、设置标签的样式 */
+            /* 方案1 */
+            // $("div").css("background", "red");
+            // $("div").css("width", "400px");
+            // $("div").css("height", "50px");
+
+            /* 方案2 链式调用*/
+            /* 思考：为什么支持链式调用？在jQuery绝大多数方法中默认都会把当前操作的对象返回，return this */
+            // $("div").css("background", "green").css("width", "400px").css("height", "50px");
+
+            /* 方案3 传递对象 */
+            $("div").css({
+                background: "green",
+                width: "200px",
+                height: "100px",
+                border: "10px solid #000"
+            })
+
+
+            /* 2、获取标签的样式 */
+            console.log($("div").css("background"));
+            console.log($("div").css("width")); /* 200px */
+
+            /* 3、补充方法 */
+            // console.log($("div").width()); /* 获取标签的宽度  200 */
+            // console.log($("div").width(600)); /* 设置标签的宽度为400 */
+            console.log($("div").height());
+
+        })
+    </script>
+</body>
+
+</html>

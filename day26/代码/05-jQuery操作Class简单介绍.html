@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            background: red;
+            text-align: center;
+        }
+        
+        .box1 {
+            width: 200px;
+        }
+        
+        .box2 {
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">我是div标签</div>
+    <!-- <div>我是div标签</div>
+    <div>我是div标签</div> -->
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        /* classList  | querySelectorAll()  |  str.trim()   promiseA+  */
+        /* 相关方法： */
+        /* jQ.addClass(类)   添加*/
+        /* jQ.hasClass(类)   检查*/
+        /* jQ.removeClass()  删除*/
+        /* jQ.toggleClass()  切换 */
+        $(function() {
+
+            /* 添加样式： */
+            /* 方案1 */
+            // $("div").addClass("box");
+            // $("div").addClass("box1");
+            // $("div").addClass("box2");
+
+            /* 方案2 */
+            // $("div").addClass("box").addClass("box1").addClass("box2");
+
+            /* 方案3 */
+            $("#demo").addClass("box box1 box2 box box1")
+
+            /* 删除样式：使用方法同addClass一致 */
+
+            /* 检查样式 */
+            /* 注意点：如果选中了多个标签那么只要在某一个标签中找到对应的class就返回true. */
+            // console.log($("div").hasClass("box")); /* 检查所有选中标签是否拥有b这个样式 */
+
+            /* 切换样式 */
+            /* 如果该样式在标签存在，那么就删除它，否则就添加 */
+            $("div").toggleClass("box");
+
+        })
+    </script>
+</body>
+
+</html>

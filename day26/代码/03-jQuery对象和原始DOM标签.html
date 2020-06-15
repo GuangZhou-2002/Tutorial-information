@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>我是div1</div>
+    <div>我是div2</div>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        /* 1、DOM标签 */
+        let oDiv = document.getElementsByTagName("div")[0];
+        console.log(oDiv); /*打印结果： <div>我是div</div> */
+        console.log(oDiv.innerText); /* 我是div */
+        // console.log(oDiv.text()); /* 报错：DOM标签没有text这个方法，因此无法调用 */
+        // console.log($(oDiv));
+
+        /* 2、获取的是jQuery实例对象 new jQuery.fn.init()*/
+        console.log($("div")); /*打印结果 jQuery.fn.init [div, prevObject: jQuery.fn.init(1)]*/
+        console.log($("div")[1]);
+        console.log($("div").get(0));
+        /* 注意1：我们要明白普通的DOM对象和jQuery的实例对象是不一样的东西，非等价的。 */
+        /* 注意2：DOM标签和jQuery对象不能混着使用，DOM标签只能访问自己的API，譬如innerText innerHTML,无法访问jQuery的Api */
+        // console.log($("div").innerText); /* undefined ? jQuery实例对象压根就没有innerText这个属性 */
+        // console.log($("div").text()) /* 调用该方法可以获取当前选中标签对应的文本内容 */
+
+        /* 3、DOM标签和jQuery对象是什么关系？ */
+        /* 可以简单认为jQuery对象中可以包含N(n>=0)个DOM标签,这些DOM标签会以键值对的(i-value)的形式保存在jQuery对象中 */
+
+        /* 4、DOM标签和jQuery对象如何转换? */
+        /* DOM->jQuery对象：可能需要把一个DOM标签包装成jQuery对象，以方便来调用jQuery的方法 */
+        /* 方案：$(dom) */
+        /* jQuery对象->DOM标签：我们可能需要把某个标签取出来，然后操作对应的标签 */
+        /* 方案：jQ[index]   |  jQ.get(index)*/
+    </script>
+</body>
+
+</html>

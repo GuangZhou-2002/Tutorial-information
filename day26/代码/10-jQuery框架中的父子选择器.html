@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <div class="box">
+            <div>div1</div>
+            <div class="box1">div2</div>
+            <div>div3</div>
+            <div>
+                <span>我是spanA</span>
+            </div>
+            <a href="">百度</a>
+            <a href="">新浪</a>
+        </div>
+    </div>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        $(function() {
+            /* 1、获取父标签相关的方法 */
+            /* jQ.parent()   获取指定标签的父标签 */
+            /* jQ.parents()  获取指定标签所有的祖先节点 */
+
+            // $("span").parent().css("background", "red");
+            // $("span").parents().css("background", "red");
+            // $("span").parents("div").css("background", "red");
+            // $("span").parentsUntil("body").css("background", "red");
+
+            /* 2、获取子标签相关的方法 */
+            // console.log($(".box").children())
+            // console.log($(".box").children("a"))
+
+            /* 3、获取兄弟标签相关的方法 */
+            /* jQ.siblings()  获取所有的兄弟节点    */
+            /* jQ.nextAll( )  获取后面的所有兄弟节点 */
+            /* 问题： */
+            console.log($(".box1").siblings()); /* 获取当前标签所有的兄弟节点 */
+            console.log($(".box1").siblings("div")); /* 获取当前标签所有的兄弟节点，只要div */
+            console.log($(".box1").nextAll()); /* 后面所有的兄弟节点 */
+            console.log($(".box1").next()); /* 后面兄弟节点中的第一个 */
+            console.log($(".box1").prevAll()); /* 前面所有的兄弟节点 */
+            console.log($(".box1").prev()); /* 前面第一个兄弟节点 */
+
+
+
+        })
+    </script>
+</body>
+
+</html>

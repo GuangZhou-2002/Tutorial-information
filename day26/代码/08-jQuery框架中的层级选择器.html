@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>div1</div>
+    <div id="id">
+        <div>1</div>
+        <div>2</div>
+        <div>
+            <div>A</div>
+            <div>B</div>
+        </div>
+    </div>
+    <div class="box">div3</div>
+    <div class="box">div4</div>
+    <span>spanA</span>
+    <span>spanB</span>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        /* 层级选择器：*/
+        /* 1、获取某个标签的指定后代标签 空格*/
+        /* 2、获取某个标签的直接后代标签 > */
+        /* 3、获取某个标签的下一个兄弟节点 + */
+        /* 4、获取某个标签后面的所有的兄弟节点(指定) + */
+        $(function() {
+            // $("#id div").css("background", "red");
+            // $("#id > div").css("background", "red");
+            // $("#id + div").css("background", "red");
+
+            $("#id ~  div").css("background", "red");
+        })
+    </script>
+</body>
+
+</html>

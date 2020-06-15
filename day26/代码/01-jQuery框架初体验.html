@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">0</div>
+    <div class="box1">1</div>
+    <div class="box1">2</div>
+    <div class="box1">3</div>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        /* 需求1：获取标签并且设置标签的内容 */
+        /* 原生的JavaScript */
+
+        /* 1、先获取对应的标签 */
+        // let oDiv = document.getElementsByClassName("box")[0];
+        /* 2、设置标签的内容 */
+        // oDiv.innerText = "我是设置的内容";
+
+
+        /* jQuery实现 */
+        // $(".box").text("我是新设置的内容");
+
+        /* 需求2：获取页面中所有样式为box1的标签并且设置标签的内容 */
+        /* JavaScript实现 */
+        // let oDivs = document.getElementsByClassName("box1");
+        // for (let i = 0; i < oDivs.length; i++) {
+        //     let oDiv = oDivs[i];
+        //     oDiv.innerText = "设置内容";
+        // }
+
+        /* jQuery实现 */
+        $(".box1").text("11111");
+    </script>
+</body>
+
+</html>
