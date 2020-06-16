@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        /* JavaScript原生的事件处理 */
+        /* 注册事件： */
+        /* 001 <button onclick="alert(123)">按钮</button> */
+        /* 002 onclick | onmouseenter */
+        /* 003 addEventListener | 兼容性问题(IE) */
+        window.onload = function() {
+            let oBtn = document.querySelector("button");
+
+            // oBtn.onclick = function() {
+            //     console.log(this, this.innerText, 1)
+            // }
+
+            // oBtn.onclick = function() {
+            //     console.log(this, this.innerText, 2)
+            // }
+
+            // oBtn.addEventListener("click", function() {
+            //     console.log(this, this.innerText, 1)
+            // })
+            // oBtn.addEventListener("click", function() {
+            //     console.log(this, this.innerText, 2)
+            // })
+
+            // if (oBtn.addEventListener) {
+            //     oBtn.addEventListener("click", function() {
+            //         console.log(this, this.innerText, 1)
+            //     })
+            //     oBtn.addEventListener("click", function() {
+            //         console.log(this, this.innerText, 2)
+            //     })
+            // } else {
+            //     oBtn.attachEvent("onclick", function() {
+            //         console.log(this, this.innerText, 1)
+            //     })
+
+            //     oBtn.attachEvent("onclick", function() {
+            //         console.log(this, this.innerText, 2)
+            //     })
+            // }
+        }
+
+        /* jQuery事件监听 */
+        /* (1) jQ.on(type,handler) */
+        /* (2) jQ.click(handler) jQ.mouseenter(handler) jQ.change(handler) jQ.keyup(handler) */
+
+        /* 获取页面中所有的按钮，给这些按钮添加点击事件 */
+        // $("button").on("click", function() {
+        //     console.log(this, 1)
+        // })
+
+        // $("button").on("click", function() {
+        //     console.log(this, 2)
+        // })
+
+        // $("button").on("mouseenter", function() {
+        //     console.log(this, "mouseenter1")
+        // })
+
+        // $("button").click(function() {
+        //     console.log(this, 3)
+        // })
+
+        // $("button").click(function() {
+        //     console.log(this, 4)
+        // })
+
+        // $("button").mouseenter(function() {
+        //     console.log(this, "mouseenter2")
+        // })
+
+        /* jQ.one()  特点是只会执行一次。 */
+        $("button").one("click", function() {
+            console.log("点击了按钮,仅此一次");
+        })
+    </script>
+</body>
+
+</html>

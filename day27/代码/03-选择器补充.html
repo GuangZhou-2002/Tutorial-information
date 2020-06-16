@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box1">我是div1
+        <span>a</span>
+        <span>b</span>
+    </div>
+    <div class="box2">我是div2
+        <span>c</span>
+    </div>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        $(() => {
+
+            // $("span") /* 表示获取页面中的所有span标签，3个 */
+            // $ 本身是一个函数等同于jQuery
+            // console.log(typeof $)
+            // 语法：jQuery(selector,context) 
+            // 参数1：选择器，用来选中页面中的标签
+            // 参数2：上下文，选择的范围，默认第二个参数的值总是为document
+            // $("span",document) == $("span") 表示在document范围内选择标签
+            // console.log($("span", ".box2")); /* 表示在class为box1的标签内部执行选择 */
+
+            // $(".box2 span")
+            /* find() 查找 */
+            // $(".box2").find("span") == $("span", ".box2")
+            console.log($(".box2").find("span"));
+            console.log($("span", ".box2"));
+
+
+        })
+    </script>
+</body>
+
+</html>

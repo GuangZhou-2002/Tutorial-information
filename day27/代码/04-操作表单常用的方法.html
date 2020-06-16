@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>111</div>
+    <hr>
+    <input type="text" value="" id="inputA">
+    <input type="text" value="" id="inputB">
+
+    <button>按钮 </button>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        /* $().val()  操作表单标签的value*/
+        /* 需求：当表单标签的值发生变化的时候，div的内容要同步更新 */
+        /* 思路 */
+        /* (1) 监听表单的事件(input) */
+        /* (2) 当事件触发的时候，获取当前输入框的值 */
+        /* (3) 把获取的值设置到div*/
+        $(() => {
+            $("#inputA").keyup(function() {
+                /* 在jQuery事件处理函数的内部，this总是会指向当前的标签 */
+                // console.log(this.value)  this是标签，所以可以通过value属性来访问表单的内容
+                // console.log($(this).val());
+                let text = $(this).val();
+
+                $("#inputB").val(text);
+                $("div").text(text);
+
+                /* jQ.val()  如果没有传递参数，那么就是获取，如果传递了参数，那么就是设置 */
+            })
+
+
+            $("div").mouseenter(function() {
+                console.log("in---")
+            });
+
+            /* 需求2：当点击按钮的时候要拷贝div插入到button的后面去 */
+            $("button").click(function() {
+
+                /* jQ.clone()  用来拷贝标签 */
+                /* 如果没有传递参数，那么默认不会拷贝标签的事件，如果需要拷贝事件，那么传递true */
+                let oDiv = $("div").clone(true);
+                /* append prepend 插入到标签的内部，称为子标签 */
+
+                /* jQ.insertAfter() 把标签插入到指定标签的后面 */
+                /* jQ.insertBefore() 把标签插入到指定标签的前面 */
+                /* 上面的方法，在使用的时候很灵活，传递的参数可以是jQ对象，也可以是选择器，如果是选择器那么它会自动的包装成jQ对象 */
+                // oDiv.insertBefore($("button"));
+                oDiv.insertBefore("button");
+            })
+        })
+    </script>
+</body>
+
+</html>

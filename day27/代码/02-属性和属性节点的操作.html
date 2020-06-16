@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo" class="box" info="信息">我是div</div>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        /* 标签本质上也是对象，因为我们称为DOM标签|DOM对象 */
+        let oDiv = document.querySelector("div");
+        // console.log(typeof oDiv) /* object */
+        // console.log(Object.prototype.toString.call(oDiv)) /* [object HTMLDivElement] */
+
+        /* DOM标签是对象，因此DOM标签可以有属性和方法,我们可以像普通对象一样来操作标签。 */
+        oDiv.a1 = "123";
+        oDiv.a2 = "2345";
+        // oDiv.showA1 = function() {
+        //     console.log("showA1", this.a1)
+        // };
+
+        /* 属性：a1 a2 就是标签的属性，标签有很多默认的属性innerHTML\nodeName\nodeType */
+        /* 属性节点：id="demo" class="box" info="信息" */
+
+        /* jQuery框架中提供了两对方法分别用来操作属性和属性节点 */
+        /* 操作属性节点： */
+        /* jQ.attr() ： jQ.attr(key) 获取 jQ.attr(key,value) 设置 */
+        /* jQ.removeAttr() 删除属性节点 */
+
+        /* 操作属性： */
+        /* jQ.prop() : jQ.prop(key) 获取 jQ.prop(key,value) 设置 */
+        /* jQ.removeProp() 删除属性 */
+        console.log($("div").attr("id"));
+
+
+        console.log($("div").prop("nodeName"));
+        console.log($("div").prop("innerText"));
+        console.log($("div").prop("innerText", "哈哈哈哈"));
+        console.log($("div").prop("a2"));
+    </script>
+</body>
+
+</html>
