@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">我是div</div>
+    <button>按钮</button>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        /* $().load()  加载服务器端的数据 */
+        /* 需求：点击的按钮，发送请求获取服务器端的文档碎片，把内容设置为div的内容*/
+        $(() => {
+            $("button").click(() => {
+                // $.ajax({
+                //     url: "../server/04.result.html",
+                // }).done((data) => {
+                //     // console.log(data);
+                //     $("#demo").html(data);
+                // })
+
+                /* 作用：会发送一个网络请求获取到结果之后设置为前面选中标签的内容 */
+                /* 注意：支持过滤(如果返回的是HTML代码片段，那么支持对结果进行二次筛选) */
+                // $("#demo").load("../server/04.result.html span");
+                // $("#demo").load("../server/04.result.html span,.box");
+            })
+
+        })
+    </script>
+</body>
+
+</html>

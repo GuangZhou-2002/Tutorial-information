@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>我是div</div>
+    <button>按钮</button>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <!-- <script src="../server/index.js"></script> -->
+    <script>
+        /* $.getJSON()   该方法专门用来加载JSON数据 */
+        /* $.getScript() 该方法用来加载js文件*/
+
+        // $.getJSON("../server/02-ajax.php", (data) => {
+        //     console.log("getJSON", data);
+        // })
+
+        /* 如果我们通过script设置src的方式引入js文件，那么会马上执行 */
+        // $("button").click(() => {
+        //     console.log("click")
+        //     $.getScript("../server/index.js");
+        // })
+
+        /* 多个请求： */
+        // $.ajax({
+        //     type: "GET",
+        //     dataType: "json",
+        //     url: "../server/01.get.php"
+        // }).done((data) => {
+        //     console.log("data", data)
+        // })
+
+        // $.ajax({
+        //     type: "GET",
+        //     dataType: "json",
+        //     url: "../server/02-ajax.php"
+        // }).done((data) => {
+        //     console.log("data", data)
+        // })
+
+
+        /* 设置全局的配置对象 */
+        /* 我们在发送ajax网络请求的时候，会使用该全局配置对象 */
+        $.ajaxSetup({
+            type: "POST",
+            dataType: "text",
+        })
+
+        $.ajax({
+            url: "../server/01.get.php"
+        }).done((data) => {
+            console.log("data", data)
+        })
+
+        $.ajax({
+            url: "../server/02-ajax.php",
+            dataType: "json"
+        }).done((data) => {
+            console.log("data", data)
+        })
+    </script>
+</body>
+
+</html>

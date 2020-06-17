@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <style>
+        .mask {
+            display: none;
+            background-color: #333;
+            color: red;
+            text-align: center;
+            width: 200px;
+            height: 30px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mask">在使出吃奶的力气加载....</div>
+    <button>按钮</button>
+    <script>
+        // ajaxSend       监听网络请求发送出去，N次
+        // ajaxComplete   监听网络请求完成     N次
+        // ajaxStart      监听第一个网络请求发送
+        // ajaxStop       监听所有的网络请求结束
+
+        $(document).ajaxSend(() => console.log("ajaxSend"))
+        $(document).ajaxComplete(() => console.log("ajaxComplete"))
+
+        $(document).ajaxStart(() => {
+            $(".mask").css("display", "block");
+            console.log("ajaxStart")
+        })
+
+        $(document).ajaxStop(() => {
+            console.log("ajaxStop")
+            $(".mask").css("display", "none");
+        })
+
+        $(document).ajaxSuccess(() => console.log("ajaxSuccess"))
+        $(document).ajaxError(() => console.log("ajaxError"))
+
+        $("button").click(() => {
+            $.ajax({
+                url: "../server/02-ajax.php",
+            }).done((data) => {
+                console.log("02-data", data);
+            })
+
+            $.ajax({
+                global: true,
+                /* 设置该配置项为false,那么该网络请求不被全局事件监听 */
+                url: "../server/01.get.php"
+            }).done((data) => {
+                console.log("01-data", data)
+            });
+            /* ... */
+        })
+
+        /* 需求：在发送网络请求的时候，弹出一个遮罩，提示正在加载。 */
+        /* 当两个网络请求都结束，那么应该要隐藏遮罩 */
+    </script>
+</body>
+
+</html>

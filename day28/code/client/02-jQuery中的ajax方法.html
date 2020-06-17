@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        /* 语法： $.ajax(options) */
+        /* 配置项： */
+        // type：  请求的方法 默认如果不写那么就是GET
+        // url :   请求的路径 
+        // data:   请求提交的参数，支持两种格式{} | 查询字符串
+        // cache:  是否要使用缓存 (true | false)
+        // async:  是否发送异步请求(默认就是异步请求)
+        // global: 这是否是一个全局的网络请求，跟全局网络请求的事件监听
+        // context:决定回调函数的上下文(this)
+        // timeout:请求超时时间
+        // success：请求成功的回调函数
+        // error:   请求失败的回调函数
+        // complete:请求结束的回调函数(成功 || 失败)
+        // beforeSend: 在发送网络请求之前会触发该回调函数
+        // dataType: 标明服务器返回的数据类型，text html json jsonP
+        // jsonp:    设置jsonp网络请求回调函数的key
+        // jsonpCallback:设置jsonp网络请求回调函数的value
+
+        let options = {
+            type: "GET",
+            timeout: 1000,
+            dataType: "json",
+            context: $("div"),
+            url: "../server/03-ajax.php",
+            beforeSend(xhr) {
+                /* 可以在该方法中设置请求头信息 */
+                // xhr.setRequestHeader()
+                console.log("beforeSend", xhr);
+            },
+            success(data, status, xhr) {
+                console.log("success-data", data);
+
+                /* 默认：this指向的是配置对象 */
+                // console.log("this", this);
+                // $("div").html(data.msg);
+                // this.html(data.msg + "@");
+            },
+            error(xhr, errStatus, err) {
+                // console.log(xhr, err, errStatus);
+                console.log("error-err", err)
+            },
+            complete() {
+                console.log("complete");
+            }
+        }
+    </script>
+    <script>
+        function f(o) {
+            console.log("获取到的数据", o);
+        }
+    </script>
+    <script>
+        /* jQuery中的ajax方法支持直接发送一个jsonp跨域网络请求 */
+        /* http://localhost:52330/code/client/02-jxx.html */
+        $.ajax({
+            url: "http://127.0.0.1/code/day28/code/server/03.jsonP.php",
+            dataType: "jsonp",
+            jsonpCallback: "jsonpFn",
+            /* 告诉ajax这是一个jsonP的网络请求 */
+            success(data, status, xhr) {
+                console.log("success-data", data);
+            },
+            error(xhr, errStatus, err) {
+                console.log("error-err", err)
+            },
+        });
+    </script>
+    <!-- <script src="http://127.0.0.1/code/day28/code/server/03.jsonP.php?callback=f"></script> -->
+
+</body>
+
+</html>

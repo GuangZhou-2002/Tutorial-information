@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/list.css">
+    <script src="./js/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+    <ul class="box"></ul>
+    <div class="cart-list">
+        <h4>购物车</h4>
+        <span id="catShow">0</span>
+    </div>
+    <script>
+        let data = [{
+            "name": "Java编程思想（第4版）",
+            "price": "99.4",
+            "src": "1.jpg",
+            "press": "机械工业出版社",
+            "discuss": "11万+条评价",
+        }, {
+            "name": "深入理解计算机系统",
+            "price": "127.9",
+            "src": "2.jpg",
+            "press": "机械工业出版社",
+            "discuss": "3万+条评价"
+        }, {
+            "name": "算法导论",
+            "price": "117.8",
+            "src": "3.jpg",
+            "press": "机械工业出版社",
+            "discuss": "11万+条评价"
+        }, {
+            "name": "复盘",
+            "price": "48.7",
+            "src": "4.jpg",
+            "press": "机械工业出版社",
+            "discuss": "4.2万+条评价"
+        }, {
+            "name": "TCP/IP详解",
+            "price": "222.600",
+            "src": "5.jpg",
+            "press": "机械工业出版社",
+            "discuss": "2.8万+条评价"
+        }, {
+            "name": "Python学习手册",
+            "price": "201.50",
+            "src": "6.jpg",
+            "press": "机械工业出版社",
+            "discuss": "1.2万+条评价"
+        }, {
+            "name": "机器学习实战",
+            "price": "109.50",
+            "src": "7.jpg",
+            "press": "机械工业出版社",
+            "discuss": "8200+条评价"
+        }, {
+            "name": "JavaScript权威指南",
+            "price": "127.90",
+            "src": "8.jpg",
+            "press": "机械工业出版社",
+            "discuss": "2.2万+条评价"
+        }, {
+            "name": "编译原理",
+            "price": "81.90",
+            "src": "9.jpg",
+            "press": "机械工业出版社",
+            "discuss": "1.1万+条评价"
+        }, {
+            "name": "设计模式",
+            "price": "32.20",
+            "src": "10.jpg",
+            "press": "机械工业出版社",
+            "discuss": "1.4万+条评价"
+        }]
+
+
+        Array.prototype.indexOfWithReference = function(ref) {
+            for (let i = 0; i < this.length; i++) {
+                if (typeof ref == "object" && ref != null) {
+                    if (JSON.stringify(ref, ["name", "price"]) === JSON.stringify(this[i], ["name", "price"])) {
+                        return i;
+                    }
+                } else {
+                    if (ref == this[i]) {
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        }
+    </script>
+
+    <script>
+        $(() => {
+
+            let cartData = JSON.parse(localStorage.getItem("cartData")) || [];
+            getTotal();
+
+            function getTotal() {
+                let total = 0;
+                console.log("iii", cartData);
+                cartData.forEach(item => {
+                    total += item.num;
+                })
+                $("#catShow").text(total);
+            }
+            /* 1、根据数据来渲染页面 */
+            let html = data.map((item, i) => {
+                let product = `
+          <li class="item" data-index=${i}>
+            <img class="item-img" src="img/${item.src}" alt="">
+            <div><span class="item-price">￥ ${item.price}</span></div>
+            <div class="item-name">${item.name}</div>
+            <div class="item-discuss">${item.discuss}</div>
+            <div class="item-press">出版社:${item.press}</div>
+            <div class="item-cart">
+              <img src="img/cart.png" alt="">
+              <span>| 添加到购物车</span>
+            </div>
+          </li>`;
+                return product;
+            }).join("");
+
+            $(".box").html(html);
+
+            /* 2、监听加入购物车标签的点击事件 */
+            /* 逻辑：当点击该标签的时候，要把当前的商品加入到购物车：把当前的商品信息存起来(本地存储)。 */
+            $(".item-cart").click(function() {
+                let idx = $(this).parent().data().index;
+                // console.log(idx);
+                // console.log(data[idx]);
+
+                /* 思路 */
+                /* ：1先把本地的数据取出来 */
+                /* ：2修改取出来的数据 */
+                /* ：3同步(重新存回去) */
+                // let cartData = JSON.parse(localStorage.getItem("cartData")) || [];
+                let book = data[idx];
+
+                console.log("cartData", cartData);
+                console.log("book", book);
+                /* 检查当前的这个商品在购物车数据中是否存在，如果存在那么就修改num+1,否则就初始化为1 */
+                let i = cartData.indexOfWithReference(book); /* -1 | 索引 */
+                if (i != -1) {
+                    console.log("book.num", book.num)
+                        // book.num += 1;
+                        // cartData[i] = book;
+
+                    cartData[i].num += 1;
+                } else {
+                    book.num = 1;
+                    cartData.push(book);
+                }
+                console.log("cartData-end", cartData);
+
+                /* 获取所有商品的数量 */
+                // let total = 0;
+                // cartData.forEach(item => {
+                //     total += item.num;
+                // })
+                // $("#catShow").text(total);
+
+                getTotal();
+                window.localStorage.setItem("cartData", JSON.stringify(cartData));
+            })
+
+            /* 3、点击购物车按钮的时候跳转打开新的页面 */
+            $(".cart-list").click(function() {
+                location.href = "./10.购物车.html"
+            })
+
+        })
+    </script>
+    <script>
+        // let arr1 = [{
+        //     name: "zs",
+        //     age: 19
+        // }, {
+        //     name: "lw",
+        //     age: 8
+        // }];
+
+        // let o = {
+        //     name: "xx",
+        //     age: 8
+        // }
+
+        /* 问：arr1中是否存在这个对象？ */
+        // [100,200,300]  问数组中是否存在100
+        // console.log([100, 20, 300].indexOf(20));
+        // console.log([100, 20, 300].includes(200));
+        // console.log(arr1.includes(o));   [] == []  注意：无法匹配
+
+        // Array.prototype.indexOfWithReference = function(ref) {
+        //     for (let i = 0; i < this.length; i++) {
+        //         if (typeof ref == "object" && ref != null) {
+        //             if (JSON.stringify(ref) === JSON.stringify(this[i])) {
+        //                 return i;
+        //             }
+        //         } else {
+        //             if (ref == this[i]) {
+        //                 return i;
+        //             }
+        //         }
+        //     }
+        //     return -1;
+        // }
+
+        // console.log([10, 20, 30].indexOfWithReference(300));
+        // console.log(arr1.indexOfWithReference(o));
+    </script>
+</body>
+
+</html>

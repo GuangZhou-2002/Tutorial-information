@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form name="nameA">
+        <input type="text" placeholder="用户名" name="username" id="user">
+        <input type="text" placeholder="密码" name="password" id="pwd">
+        <input type="text" placeholder="邮箱" name="email" id="email">
+    </form>
+    <script src="./js/jquery-3.4.1.js "></script>
+    <button>提交</button>
+    <script>
+        $(() => {
+            $("button").click(() => {
+
+                let data = $("form").serialize();
+
+                console.log("序列化", data);
+                $.ajax({
+                    type: "post",
+                    url: "../server/05.ajax.php",
+                    data
+                    // data: `username=${$("#user").val()}&pwd=${$("#pwd").val()}&email=${ $("#email").val()}`
+                    // data: {
+                    //     username: $("#user").val(),
+                    //     password: $("#pwd").val(),
+                    //     email: $("#email").val()
+                    // }
+                }).done((data) => {
+                    console.log(data);
+                })
+
+                /* jQ.serialize()  把表单中的数据都处理为查询字符串*/
+                /* 自己封装ajax : obj2QueryString({name:"zs",age:18}) => name=zs&age=18 */
+                let queryString = $.param({
+                    name: "zs",
+                    age: 18
+                })
+                console.log("queryString", queryString);
+            })
+
+        })
+    </script>
+</body>
+
+</html>

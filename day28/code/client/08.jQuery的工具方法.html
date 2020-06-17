@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        $(() => {
+
+            /* 1、$.trim() 清理字符串前面和后面的空格 */
+            let str = $.trim("  abc    ");
+            console.log(str);
+
+            /* 2、转换为数组 */
+            console.log($("li")); //jQ
+            console.log($.makeArray($("li"))); //数组
+            let likeArr = {
+                0: "zs",
+                1: 18,
+                length: 2
+            };
+            console.log($.makeArray(likeArr)); /* ["zs",18] */
+
+            /* 3、jQ.toArray() */
+            console.log($("li").toArray()); /* 把jQuery对象转换为真正的数组 */
+
+            /* 4、ES6 Array.from(伪数组) */
+
+            /* 5、each方法 统一了不同类型数据的遍历*/
+            /* 语法：$.each(arr|likeArr|obj,fn) */
+            /* 数组 for forEach  for..in*/
+            // [10,"232432",40,50].forEach()
+
+            /* 对象 for..in  */
+            /* 伪数组：for..in for */
+            // let arr1 = [100, 20, 30, 40];
+
+            // /* 遍历数组 */
+            // $.each(arr1, (key, value) => {
+            //     console.log(key, value);
+            // })
+
+            // /* 遍历jQuery对象|伪数组 */
+            // $.each(likeArr, (key, value) => {
+            //     console.log(key, value);
+            // })
+            // $.each($("li"), (key, value) => {
+            //     console.log(key, value);
+            // })
+
+            // let obj = {
+            //     color: "yellow",
+            //     age: 18
+            // };
+            // $.each(obj, (key, value) => {
+            //     console.log(key, value);
+            // })
+
+            /* 1、each方法用来遍历数组|对象|伪数组|jQuery实例对象 */
+            /* 2、each方法注意点 */
+            /* (1) 回调函数中的this，指向的是当前的value而非window */
+            /*     问题：回调函数中的this为什么要指向value,某些情况下可以省略形参 */
+            /* (2) 该方法可以中途退出,通过回调函数的返回值来进行处理 return false */
+            // $.each([10, 20, 30], function(idx, value) {
+            //     console.log(idx, value, this)
+            // })
+
+            $.each($("li"), function(idx) {
+                console.log(idx, this)
+                if (idx == 1) return false;
+            })
+
+            /* 考虑：如果我们自己来封装each方法应该如何写代码？ */
+        })
+    </script>
+</body>
+
+</html>

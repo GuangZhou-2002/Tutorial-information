@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+    <script>
+        /* 1、$.get(url,callback(data,status,xhr){},[dataType]) */
+        $.get("../server/01.get.php", (data, status, xhr) => {
+            console.log(data, status, xhr);
+            // 需求：通过请求对象来获取响应头信息 
+
+            /* (1)获取所有的响应头信息 */
+            let headers = xhr.getAllResponseHeaders();
+            console.log(headers);
+            // connection: Keep-Alive
+            // content-length: 3
+            // content-type: text/html; charset=UTF-8
+            // date: Wed, 17 Jun 2020 01:26:15 GMT
+            // keep-alive: timeout=5, max=98
+            // server: Apache/2.2.34 (Unix) mod_wsgi/3.5 Python/2.7.13 PHP/7.2.14 mod_ssl/2.2.34 OpenSSL/1.0.2o DAV/2
+            // mod_fastcgi/mod_fastcgi-SNAP-0910052141 mod_perl/2.0.9 Perl/v5.24.0
+            // x-powered-by: PHP/7.2.14
+
+            /* (2) 获取指定的响应头信息 */
+            let server = xhr.getResponseHeader("server");
+            console.log("server", server);
+
+            /* 如果服务器返回的JSON数据，那么需要这样进行反序列化的处理 */
+            // console.log(JSON.parse(data))
+            console.log(data);
+        }, "json");
+
+        /* 2、$.post(url,callback(data,status,xhr){},[dataType]) */
+        $.post("../server/01.get.php", (data, status, xhr) => {
+            console.log(data);
+        }, "json");
+    </script>
+</body>
+
+</html>

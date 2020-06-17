@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let $ = {
+            each(target, callback) {
+                /* 1、判断第一个参数的类型：数组|对象|伪数组 */
+                /* 2、根据类型不同来选择不同的方式进行遍历操作 */
+                /* 策略：如果参数是数组|伪数组那么就使用for循环来遍历，如果参数是对象那么就使用for..in循环遍历 */
+                if (Array.isArray(target) || (typeof target == "object" && "length" in target && target.length - 1 in
+                        target)) {
+                    for (let i = 0; i < target.length; i++) {
+                        let result = callback.call(target[i], i, target[i]);
+                        if (result == false) break;
+                    }
+                } else {
+                    for (let key in target) {
+                        if (callback.call(target[key], key, target[key]) === false) break;
+                    }
+                }
+            }
+        }
+
+        $.each([10, 203, 40], function(key, value) {
+            console.log(key, value, this)
+            if (value == 203) return false;
+
+        })
+
+        $.each({
+            0: 1,
+            1: 18,
+            length: 2
+        }, function(key, value) {
+            console.log(key, value, this)
+        })
+
+        $.each({
+            name: "zs",
+            age: 18,
+            color: "red",
+            num: "23245"
+        }, function(key, value) {
+            console.log(key, value, this)
+            if (key == "age") return false;
+        })
+    </script>
+</body>
+
+</html>

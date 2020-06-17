@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>状态</th>
+                <th>图片</th>
+                <th>商品</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>小计</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td><input type="checkbox"></td>
+                <td><img src="./Snip20190807_1.png" alt=""></td>
+                <td>贵州茅台</td>
+                <td>￥ 1829.00</td>
+                <td><button class="btnA">-</button> <input type="text" class="num"> <button class="btnB">+</button></td>
+                <td>￥ 1829.00</td>
+                <td><a>删除</a></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><img src="./Snip20190807_1.png" alt=""></td>
+                <td>贵州茅台</td>
+                <td>￥ 1829.00</td>
+                <td><button class="btnA">-</button> <input type="text" class="num"> <button class="btnB">+</button></td>
+                <td>￥ 1829.00</td>
+                <td><a>删除</a></td>
+            </tr> -->
+        </tbody>
+    </table>
+
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        $(() => {
+            /* 1、先读取本地存储的购物车的数据 */
+            let cartData = JSON.parse(localStorage.getItem("cartData")) || [];
+            // console.log(cartData);
+
+            let html = cartData.map(item => {
+                return `
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src=${"./img/" + item.src} alt=""></td>
+                    <td>${item.name}</td>
+                    <td>￥${(item.price * 1).toFixed(2)}</td>
+                    <td><button class="btnA">-</button> <input type="text" class="num" value=${item.num}> <button class="btnB">+</button>
+                    </td>
+                    <td>￥ ${(item.price * item.num * 1).toFixed(2)}</td>
+                    <td><a>删除</a></td>
+                </tr>
+                `
+            })
+
+            $("tbody").html(html);
+        })
+    </script>
+</body>
+
+</html>
