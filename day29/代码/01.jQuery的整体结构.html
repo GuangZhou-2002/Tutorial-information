@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person() {
+            this.name = "默认的姓名"
+        }
+
+        /* 1、逐个的添加 */
+        // Person.prototype.info = "信息";
+        // Person.prototype.show = function() {
+        //     console.log("show")
+        // }
+        // Person.prototype.show2 = function() {
+        //     console.log("show2")
+        // }
+        // Person.prototype.show3 = function() {
+        //     console.log("show3")
+        // }
+
+        /* 2、直接替换原有的原型对象 */
+        Person.prototype = {
+            constructor: Person,
+            info: "信息",
+            show() {
+                console.log("show")
+            },
+            show2() {
+                console.log("show2")
+            },
+            show3() {
+                console.log("show3")
+            },
+            show4() {
+                console.log("show4")
+            }
+        }
+
+        let p = new Person();
+        console.log(p.constructor === Person);
+    </script>
+    <!-- <script src="./src/jquery-3.4.1.js"></script> -->
+    <script src="./src/jq-1.0.0.js"></script>
+
+    <script>
+        // console.log($, jQuery, $ == jQuery);
+        console.log(window.jQuery())
+    </script>
+</body>
+
+</html>

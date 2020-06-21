@@ -1,0 +1,1 @@
+"use strict";!function(){function t(n){return new t.fn.init(n)}(t.fn=t.prototype={constructor:t,init:function(){},text:function(){},html:function(){},css:function(){},on:function(){},click:function(){},toArray:function(){},eq:function(){},get:function(){},each:function(){}}).init.prototype=t.fn,window.$=window.jQuery=t}();

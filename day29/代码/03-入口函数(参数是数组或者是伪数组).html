@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demoID">div1</div>
+    <div class="box">div2</div>
+    <div class="box">div3</div>
+    <div>div4</div>
+    <!-- <script src="./src/jquery-3.4.1.js"></script> -->
+    <script src="./src/jq-1.0.3.js"></script>
+    <script>
+        /* 参数是数组:会把数组的元素依次保存到jquery对象中返回 */
+        // console.log($([100, 20, 30, 40]));
+
+        // 参数是伪数组:会把伪数组的元素依次保存到jquery对象中返回 
+        // console.log($({
+        //     0: "name",
+        //     1: "age",
+        //     length: 2
+        // }));
+
+
+        /* 把数组中的所有元素依次添加到某个对象中，并且更新length */
+        let arr = [10, 20, 30];
+        // arr.push(100, 200, 300); /* 该方法会依次把后面的数据添加到arr中，并且会更新length的值 */
+        // console.log(arr);
+
+        let obj = {};
+        // obj.push(10, 20, 30, 40); //{0:10,1:20,2:30,3:40,length:4}
+        // arr.push.call(obj, 10, 20, 30, 400); //obj.push(10,20,30,400)
+        // console.log(obj);
+
+        // [].push.apply(obj, arr); /* 表示要把arr中的元素依次的添加到obj对象中，并且更新length */
+        // [].push.apply(obj, {
+        //     0: "name",
+        //     1: "age",
+        //     length: 2
+        // });
+        console.log(obj);
+    </script>
+</body>
+
+</html>

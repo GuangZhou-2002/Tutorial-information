@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>div1</div>
+    <!-- <div>div2</div> -->
+    <!-- <script src="./src/jquery-3.4.1.js"></script> -->
+    <script src="./src/jq-1.2.0.js"></script>
+    <script>
+        /* $().html([html])   如果传递了参数，那么表示要设置所有选中标签的节点内容，否则表示获取第一个标签的内容 */
+        // $("div").html("<h1>4332425</h1>");
+        // console.log($("div").html());
+
+        /* text() */
+        /* css() */
+
+
+        /* 事件处理的方法：on方法  off方法  click() mouseenter() */
+        // $("div").on("click", function() {
+        //     console.log("on-click-1")
+        // })
+
+        // $("div").on("click", function() {
+        //     console.log("on-click-2")
+        // })
+
+        // $("div").click(function() {
+        //     console.log("click-a")
+        // })
+
+        $("div").click(function() {
+            console.log("click-b")
+        })
+
+        $("div").mouseenter(function() {
+            console.log("mouseenter")
+        })
+
+        $("div").mouseleave(function() {
+            console.log("mouseleave")
+        })
+    </script>
+</body>
+
+</html>

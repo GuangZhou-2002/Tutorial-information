@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demoID">div1</div>
+    <div class="box">div2</div>
+    <div class="box">div3</div>
+    <div>div4</div>
+    <!-- <script src="./src/jquery-3.4.1.js"></script> -->
+    <script src="./src/jq-1.0.5.js"></script>
+    <script>
+        /* 001-参数是普通对象: 把对象整体保存为key为0对应的value值，返回jquery实例对象 */
+        console.log($({
+            name: "zs",
+            age: 18
+        }));
+
+        /* 002-DOM标签 : 把DOM标签整体保存为key为0对应的value值，返回jquery实例对象*/
+        let dom = document.createElement("div");
+        dom.innerHTML = "我是div";
+        console.log($(dom));
+
+        /* 003-非零数字|true(false 排除)  */
+        console.log($(123));
+        console.log($(true));
+    </script>
+</body>
+
+</html>

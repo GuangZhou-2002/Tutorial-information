@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demoID">div1</div>
+    <div class="box">div2</div>
+    <div class="box">div3</div>
+    <div>div4</div>
+    <!-- <script src="./src/jquery-3.4.1.js"></script> -->
+    <script src="./src/jq-1.0.6.js"></script>
+    <script>
+        /* 参数是函数的情况：监听DOM的加载，等DOM加载完毕执行函数中的代码 */
+        $(function() {
+            console.log(document.getElementsByTagName("span")[0], 1);
+        });
+
+        $(function() {
+            console.log(document.getElementsByTagName("span")[0], 2);
+        });
+    </script>
+
+    <span>我是span</span>
+</body>
+
+</html>
