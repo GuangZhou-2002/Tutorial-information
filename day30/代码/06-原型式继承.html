@@ -1,0 +1,93 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-19 14:26:52
+ * @LastEditTime: 2020-06-19 14:41:42
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day30/代码/06-原型式继承.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let Person = function(name, address) {
+        //     this.name = name;
+        //     this.address = address;
+        // }
+
+        // Person.prototype.showName = function() {
+        //     console.log("name", this.name);
+        // }
+
+        // Person.prototype.showAddress = function() {
+        //     console.log("address", this.address);
+        // }
+
+
+        // let Boy = function(name, address) {
+        //     this.name = name;
+        //     this.address = address;
+        //     this.sex = "男孩"
+        // }
+
+        // Boy.prototype.showName = function() {
+        //     console.log("name", this.name);
+        // }
+
+        // Boy.prototype.showAddress = function() {
+        //     console.log("address", this.address);
+        // }
+        // Boy.prototype.player = function() {
+        //     console.log("player");
+        // }
+
+
+        // let p = new Person("zs", "釜山");
+        // console.log(p);
+        // let b = new Boy("瓜瓜", "东莞");
+        // console.log(b);
+
+
+
+        let Person = function(name, address) {
+            this.name = name;
+            this.address = address;
+        }
+
+        Person.prototype.showName = function() {
+            console.log("name", this.name);
+        }
+
+        Person.prototype.showAddress = function() {
+            console.log("address", this.address);
+        }
+
+        let Boy = function(name, address) {
+            this.name = name;
+            this.address = address;
+            this.sex = "男孩"
+        };
+
+        /* 原型式继承：核心是设置子构造函数的原型对象指向父构造函数的原型对象(原型对象共享) */
+        Boy.prototype = Person.prototype;
+
+        Boy.prototype.player = function() {
+            console.log("player");
+        }
+
+        let p = new Person("zs", "釜山");
+        console.log(p);
+        let b = new Boy("瓜瓜", "东莞");
+        console.log(b);
+    </script>
+</body>
+
+</html>

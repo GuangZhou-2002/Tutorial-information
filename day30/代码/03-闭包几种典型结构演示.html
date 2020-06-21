@@ -1,0 +1,147 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-19 10:39:38
+ * @LastEditTime: 2020-06-19 10:53:08
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day30/代码/03-闭包几种典型结构演示.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 1、闭包的结构(1) */
+        // function f() {
+        //     var a = 123;
+        //     return function() {
+        //         return a;
+        //     }
+        // }
+
+        // let fn = f();
+        // console.log(fn());
+
+        /* 2、闭包的结构(2) */
+        // function f() {
+        //     var name = "梦露";
+        //     var age = 18;
+        //     return function() {
+        //         return [name, age];
+        //     }
+        // }
+
+        // let fn = f();
+        // console.log(fn()[0])
+        // console.log(fn()[1])
+
+        // function f() {
+        //     var name = "梦露";
+        //     var age = 18;
+        //     return [
+        //         function() {
+        //             return name;
+        //         },
+        //         function() {
+        //             return age;
+        //         }
+        //     ]
+        // }
+
+        // let fn = f();
+        // console.log(fn[0]())
+        // console.log(fn[1]())
+
+        /* 如果要访问多个数据，建议使用下面的方法 */
+        // function f() {
+        //     var name = "梦露";
+        //     var age = 18;
+
+        //     function getName() {
+        //         return name;
+        //     }
+
+        //     function getAge() {
+        //         return age;
+        //     }
+
+        //     return {
+        //         getName,
+        //         getAge
+        //     }
+        // }
+
+        // let fn = f();
+        // console.log(fn.getName())
+        // console.log(fn.getAge())
+
+        /* 3、闭包的典型结构(读取|修改) */
+        // function f() {
+        //     var name = "梦露";
+        //     var age = 18;
+
+        //     return {
+        //         getName() {
+        //             return name
+        //         },
+        //         getAge() {
+        //             return age
+        //         },
+        //         setName(val) {
+        //             name = val;
+        //         },
+        //         setAge(val) {
+        //             age = val;
+        //         }
+        //     }
+        // }
+
+        // let obj = f();
+        // console.log(obj.getName())
+        // console.log(obj.getAge())
+        // obj.setName("rose");
+        // obj.setAge(16);
+        // console.log(obj.getName())
+        // console.log(obj.getAge())
+
+
+        /* 变形： */
+        let obj = (() => {
+
+            var name = "梦露";
+            var age = 18;
+
+            return {
+                getName() {
+                    return name
+                },
+                getAge() {
+                    return age
+                },
+                setName(val) {
+                    name = val;
+                },
+                setAge(val) {
+                    age = val;
+                }
+            }
+        })();
+
+
+        console.log(obj.getName())
+        console.log(obj.getAge())
+        obj.setName("rose");
+        obj.setAge(160);
+        console.log(obj.getName())
+        console.log(obj.getAge())
+    </script>
+</body>
+
+</html>

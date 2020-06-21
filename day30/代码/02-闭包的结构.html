@@ -1,0 +1,88 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-19 09:43:49
+ * @LastEditTime: 2020-06-19 10:14:42
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day30/代码/02-闭包的结构.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function fn() {
+        //     var a = 123;
+        //     console.log("call fn", a);
+        // }
+
+        // fn();
+
+        // console.log(a); /* 报错：Uncaught ReferenceError: a is not defined */
+        /* 需求：我在fn这个函数的外部需要访问内部的变量a ，如何实现？*/
+
+        /* 方案(1) : 考虑在函数中通过return的方式来把要访问的变量返回出去 */
+        /* 效果:在外部能拿到私有变量的数据 */
+        /* 问题:请问a1和a2是同一个数据吗？ 答案：它们并不是同一个数据，因为函数调用了两次，每次调用都会创建新的数组 */
+        function fn() {
+            var a = [1, 2, 3]; /* 私有变量  a计数器(1)*/
+            console.log("call fn", a);
+            return a;
+        }
+
+        fn(); /* a计数器(1-1 == 0)   */
+
+
+        // console.log(a1);
+
+        // let a2 = fn();
+        // console.log(a2);
+
+        // console.log(a1 === a2); /* false */
+
+        /* 方案(2) 在函数内部返回一个新的函数，这个新的函数中返回上面函数中某个数据。*/
+        /* 通过这种方式，我们可以做到： */
+        /* (1) 外部可以间接访问到函数内部的私有数据 */
+        /* (2) 外部访问多次，读取的是同一个数据 */
+        /* (3) 外部甚至可以来操作(修改)函数内部的私有数据 */
+        function fn() {
+
+            var a = [1, 2, 3]; /* 私有变量 a[计数器]=1*/
+
+            return function() {
+                return 123; /* a[计数器]=2 */
+            };
+        }
+
+        let f = fn(); /* 在函数的内部创建数组[1,2,3]并且返回函数给我 a[计数器]=1*/
+
+        let a1 = f();
+        let a2 = f();
+        console.log(a1, a2, a1 === a2);
+        a1.push(4);
+        console.log(f())
+
+        /* 上面的代码是典型的闭包的结构 */
+        /* 特点：(1) 我们通过上面这种结构可以间接访问到函数内部的私有变量 (2) 变量的生命周期被延长了。*/
+        /* 生命周期：出生-死亡|创建-销毁 */
+        /* 问题：变量什么时候被销毁？ 
+            默认网页正常运行的过程中，全局变量不会被销毁，除非我们通过代码主动进行销毁(变量 = null) 
+            函数内部的私有变量，正常情况下是当函数执行完毕的时候就会被销毁，该函数执行的过程中所占有的资源也会被释放。
+            垃圾处理机制：浏览器处理(每隔固定的时间就扫描一遍，如果发现有变量或者是函数需要清理，那么就会销毁它们并且释放空间)
+            变量：引用计数器  var a = 1000;   a[计数器] = 1； 当某个函数作用域执行完毕的时候，作用域需要被释放了，对当前作用域中引用的变量计数器执行-1的操作。
+            当浏览器发现变量的计数器变成了0，那么就会把变量销毁。
+            如果在某个函数中对这个变量进行了引用，那么这个变量的计数器也要+1.
+        */
+
+        /* [上帝   🐜(1)  🐜(1) 🐜(1)] */
+    </script>
+</body>
+
+</html>

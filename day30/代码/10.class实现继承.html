@@ -1,0 +1,53 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-19 15:04:49
+ * @LastEditTime: 2020-06-19 15:16:09
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day30/代码/10.class实现继承.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            showName() {
+                console.log("name", this.name);
+            }
+            showAge() {
+                console.log("age", this.age);
+            }
+        }
+
+        class Boy extends Person {
+            constructor(gf, name, age) {
+                super(name, age); /* 执行父类constructor方法并且生成一个this */
+                this.sex = "男";
+                this.gf = gf;
+            }
+            showGf() {
+                console.log("对象", this.gf);
+            }
+            showName() { /* 重写 , 也可以在子类的方法中调用父类的方法*/
+                super.showName();
+                console.log("姓名", this.name);
+            }
+        }
+
+        let b = new Boy("古力娜扎", "老王", 63);
+        console.log(b);
+
+        /* 实现继承关键：extends  + 在子类的访问this前需要先调用父类 */
+    </script>

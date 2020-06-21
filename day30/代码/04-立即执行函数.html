@@ -1,0 +1,90 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-19 10:53:46
+ * @LastEditTime: 2020-06-19 11:04:02
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day30/代码/04-立即执行函数.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 立即执行函数(即时函数|自执行函数) */
+        /* 两种写法 */
+        // (function() {
+        //     console.log("1");
+        // })();
+
+        // (function() {
+        //     console.log("2");
+        // }())
+
+        /* 特殊写法 */
+        // +
+
+        // function() {
+        //     console.log("3")
+        // }();
+
+        // -
+
+        // function() {
+        //     console.log("4")
+        // }();
+
+
+        // ! function() {
+        //     console.log("5")
+        // }();
+
+        /* 立即执行函数： */
+        /* (1) 立即执行函数也可以有参数，参数可以是任意类型的 */
+        /* (2) 立即执行函数也可以有返回值，返回值可以是任意类型,因此返回值也可以是一个函数 */
+        // (function(a, b) {
+        //     console.log("参数", a, b);
+        // })(100, 200)
+
+        // let obj = (function(a, b) {
+        //     console.log("参数", a, b);
+        //     return {
+        //         name: "zs",
+        //         a,
+        //         b
+        //     };
+        // })(100, 200);
+
+        // console.log(obj);
+
+        let f = (function(a, b) {
+            console.log("参数", a, b);
+
+            return function(a1, a2, a3, callBack) {
+                console.log("参数", a1, a2, a3);
+
+                callBack("n1", "n2");
+
+                return function() {
+                    return 2000;
+                }
+            }
+        })(100, 200);
+
+
+        let num = (f(1, 2, 3, function(n1, n2) {
+            console.log("回调函数", n1, n2);
+        }))();
+
+        console.log(num);
+    </script>
+</body>
+
+</html>

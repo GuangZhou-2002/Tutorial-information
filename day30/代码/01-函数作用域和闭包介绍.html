@@ -1,0 +1,82 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-19 09:16:00
+ * @LastEditTime: 2020-06-19 09:43:15
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day30/代码/01-函数作用域和闭包介绍.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 函数的作用域和闭包 */
+        /* 作用域：变量起作用的范围(区域) */
+        /* JavaScript的作用域：词法作用域(静态作用域)    this && eval("var a = 123;")例外 */
+        /* 全局作用域：默认拥有一个全局作用域 */
+        /* 函数作用域：JavaScript的函数比较特殊(一等公民)，函数内部会形成一个封闭的局部作用域空间。 */
+        /* ES6 + let 关键字: let + {} 也会形成一个块级作用域 */
+
+        /* 全局变量：在全局作用域中声明的变量，在代码的任何位置都可以访问。 */
+        /* 局部变量：在局部作用域中声明的变量，该变量只在当前局部作用域中可以被访问。 */
+
+        // for (let i = 0; i < 3; i++) {
+        //     console.log("i=", i); /* 0,1,2 */
+        // }
+
+        // console.log("_________")
+        // console.log(i); /* 3 */
+
+
+        /* 作用域链： */
+        /* 作用域的访问规则：
+            (1) 当我们在作用域中访问变量的时候，会先在当前作用域中进行查找，如果找到那么就直接使用
+           否则就继续查找上一层作用域，如果找到那么就直接使用，重复这个过程，直到找到为止，如果我们已经找到了最外层
+           的全局作用域中都没有找到，那么就报错。 报错信息：e is not defined
+            (2) 查找的方向是单向的(只能网上层作用域查找)
+        */
+        var a = 1;
+
+        function f1() {
+            var b = 2;
+            f = 1000;
+            /* 先查找当前作用域中是否存在f这个变量，不存在，那么就查找外层作用域(全局)中是否存在，不存在*/
+            /* 那么JavaScript处理器就会在当前作用域中声明这个变量，因为没有使用var关键字，所以该变量默认是全局的 */
+
+            function f2() {
+                var c = 3;
+                console.log("f2", a); /* 此处打印d，那么就报错 */
+
+                function f3() {
+                    var d = 4;
+                    var a = 100;
+                    console.log("f3", a, b, c, d); /* 打印e，报错 */
+                }
+                f3();
+            }
+
+            console.log("f1");
+            f2();
+        }
+
+        f1();
+        console.log("a", a); /*  1 */
+        // console.log("b", b); /* ? 报错： */
+        console.log("f", f); /* 1000 */
+
+        /* a 全局作用域 */
+        /* b f1函数作用域 */
+        /* c f2函数作用域 */
+        /* d f3函数作用域 */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-19 14:19:33
+ * @LastEditTime: 2020-06-19 14:25:56
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day30/代码/05-面向对象特性继承.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 什么是继承？ 主流编程语言中通过class来实现，父类，子类，继承就是子类获取父类的成员(属性和方法)。*/
+        /* js在ES6前没有class,因此js的继承主要通过原型对象|原型链来实现。 */
+
+        /* (1) 混入式继承(拷贝) */
+        /* (2) 原型式继承(通过设置原型对象共享) */
+        /* (3) 原型链继承(借助原型链) */
+        /* (4) 借用构造函数实现继承 */
+        /* (5) 组合继承 */
+        /* (6) class实现继承 */
+
+
+        /* 在js早期，继承指的是什么呢？指的是某个对象(子类)获取另一个对象(父类)的成员 */
+        /* (1) 混入式继承(拷贝) */
+        let o = {
+            name: "zs",
+            age: 18,
+            showName() {
+                console.log("name");
+            }
+        }
+
+        let t = {};
+
+        /* 浅拷贝 */
+        // for (let key in o) {
+        //     t[key] = o[key];
+        // }
+
+        Object.assign(t, o);
+        console.log(t);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-19 14:54:18
+ * @LastEditTime: 2020-06-19 15:03:21
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day30/代码/08.借用构造函数实现继承 .html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let Person = function(name, address) {
+            this.name = name;
+            this.address = address;
+        }
+
+        Person.prototype.showName = function() {
+            console.log("name", this.name);
+        }
+
+        Person.prototype.showAddress = function() {
+            console.log("address", this.address);
+        }
+
+        let Boy = function(name, address) {
+
+            this.sex = "男孩";
+
+            /* call和apply方法 */
+            Person.call(this, name, address); /* 获取父构造函数的实例成员 */
+        };
+
+        Boy.prototype = Person.prototype; /* 获取父构造函数的原型成员 */
+
+        Boy.prototype.player = function() {
+            console.log("player");
+        }
+
+        let b1 = new Boy("小明", "东莞");
+        console.log(b1);
+
+        let b2 = new Boy("小张", "张家界");
+        console.log(b2);
+    </script>
+</body>
+
+</html>

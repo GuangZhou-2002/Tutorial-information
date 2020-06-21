@@ -1,0 +1,58 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-19 14:26:52
+ * @LastEditTime: 2020-06-19 14:52:02
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /day30/代码/06-原型式继承.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let Person = function(name, address) {
+            this.name = name;
+            this.address = address;
+        }
+
+        Person.prototype.showName = function() {
+            console.log("name", this.name);
+        }
+
+        Person.prototype.showAddress = function() {
+            console.log("address", this.address);
+        }
+
+        let Boy = function() {
+            this.sex = "男孩"
+        };
+
+        // Boy.prototype = Person.prototype;
+        /* 原型链继承：设置子构造函数的原型对象指向父构造函数的实例对象 */
+        Boy.prototype = new Person("小强", "东莞");
+
+        Boy.prototype.player = function() {
+            console.log("player");
+        }
+
+        let p = new Person("zs", "釜山");
+        console.log(p);
+
+        Boy.prototype.name = "小王";
+        let b1 = new Boy();
+        console.log(b1);
+
+        let b2 = new Boy();
+        console.log(b2);
+    </script>
+</body>
+
+</html>

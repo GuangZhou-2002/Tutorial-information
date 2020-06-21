@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 在主流的编程语言中，单例模式指的是：某个类只有一个实例对象。 */
+        /* 在JavaScript语言中，单例模式有两个层面，一个层面是基于对象的，一个层面是基于构造函数。 */
+        /* 基于对象的单例：JavaScript中的对象天生就是独一无二的。 */
+
+        // let o1 = {};
+        // let o2 = {};
+
+        // console.log(o1 == o2);
+
+        /* 基于构造函数的单例实现：需要把Person这个构造函数写成一个单例 */
+        /* 需要让Person实现单例模式：p1 === p2 */
+        /* 如果Person实现了单例，那么不管我new多少次，不管我在哪里new来创建，得到的永远都是同一个对象。 */
+        /* 策略:当我们通过new来调用构造函数的时候，应该先检查实例对象是否存在，如果存在那么就直接返回这个对象不再创建新的，如果实例对象
+               不存在，那么再创建新的实例对象返回，并且需要把这个实例对象保存起来。
+         */
+
+
+        /* 通过全局变量来实现单例模式 */
+        let instance;
+
+        function Person() {
+            // if(检查实例对象是否创建){
+            //   return 已经创建好的实例对象;
+            // }else{
+            //   创建新的实例对象
+            //   把该实例对象保存起来 ? 存到哪里
+            //   把新创建的实例对象返回
+            // }
+
+            if (instance) {
+                return instance;
+            } else {
+                instance = this;
+                return this;
+            }
+        }
+
+        let p1 = new Person;
+        let p2 = new Person;
+        instance = [1, 2, 3, 4];
+
+        let p3 = new Person;
+
+        console.log(p1 == p2, p1, p2, p3, p3 == p2);
+
+        /* 注意点：因为我们使用全局变量来保存实例对象，而全局变量在任何地方都可以被访问，因此是不安全的。 */
+    </script>
+</body>
+
+</html>

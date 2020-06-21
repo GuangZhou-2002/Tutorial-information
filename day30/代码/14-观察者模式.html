@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <!-- <div id="app">
+        <h1>{{title}}</h1>
+    </div> -->
+    <script>
+        /* 购房者   楼盘售楼部(销售) */
+        /* 购房者A 抱歉：这一期的房源已经全部被认购了。 登记信息[电话]*/
+        /* 购房者B 抱歉：这一期的房源已经全部被认购了。 登记信息[微信] */
+        /* 购房者C 抱歉：这一期的房源已经全部被认购了。 登记信息[邮箱] */
+
+        /* 观察者模式：状态(房源)  状态的发布者   状态的订阅者  */
+        /* 核心:当状态发生变化的时候，要以不同的方式来通知订阅者，让订阅者采取行动。 */
+
+        /* Vue 观察者模式  Object.defineProperty() */
+        // let vm = new Vue({
+        //     el: "#app",
+        //     data: {
+        //         title: "我是大标题"
+        //     }
+        // })
+
+        /* 当数据的内容发生了变化，那么就应该重新生成UI标签然后渲染UI */
+        /* 状态：数据的内容  */
+
+        let jack = {
+            rose_eat() {
+                console.log("我已经为你煮好了一碗热腾腾的拉面，我送过来给你 --jack");
+            }
+        }
+
+        let tom = {
+            rose_eat() {
+                console.log("我们一起去吃饭吧-tom");
+            },
+            lucy_eat() {
+                console.log("我们一起去吃饭吧-tom");
+            }
+        }
+
+
+        let lw = {
+            rose_eat() {
+                console.log("来我家吃吧-lw");
+            }
+        }
+
+        function Publisher(name) {
+            this.name = name;
+            this.user = [];
+            this.addUser = function(fn) {
+                this.user.push(fn);
+            }
+            this.statusChange = function() {
+                console.log("statusChange", "我饿了---" + this.name)
+                this.user.forEach(fn => fn());
+            }
+        }
+
+        /* 创建发布者对象 */
+        let p1 = new Publisher("rose");
+
+        /* 给发布者对象添加订阅者 */
+        p1.addUser(tom.rose_eat);
+        p1.addUser(lw.rose_eat);
+        p1.addUser(jack.rose_eat);
+
+
+        let p2 = new Publisher("lucy");
+        p2.addUser(tom.lucy_eat);
+
+        /* 策略：rose-我饿了   jack-*/
+    </script>
+</body>
+
+</html>
