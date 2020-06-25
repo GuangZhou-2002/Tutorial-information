@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/* 注释：同less一致 */
+/* 变量： */
+/* less   @变量名:值； */
+/* sass   $变量名:值； */
+/* 嵌套写法:同Less一致 */
+/* @import 在该文件中引入其他文件的内容 */
+body {
+  width: 1600px;
+  height: 500px;
+  background: yellow;
+}
+
+body .header {
+  width: 1600px;
+  height: 150px;
+  background: yellow;
+}
+
+body .header span {
+  color: yellow;
+}

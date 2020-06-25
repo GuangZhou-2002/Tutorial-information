@@ -1,0 +1,1 @@
+"use strict";var NameSpaceA={a:1,info:{id:"111",color:"red",data:{address:"广东",info:{n1:11,n2:22,sum:function(a,n){return a+n}}}}};

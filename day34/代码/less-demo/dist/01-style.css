@@ -1,0 +1,17 @@
+/* 1、注释 */
+/* 2、变量 */
+/* less语法支持我们使用变量，变量可以理解为跟JavaScript中的变量一致。 */
+/* 语法：@变量名:变量值; */
+/* 变量的声明 */
+div {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  /* 使用了变量 */
+  background: #888;
+  color: #2c2c30;
+}
+span {
+  background: #888;
+  color: #2c2c30;
+}

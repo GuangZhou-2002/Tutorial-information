@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./Promise.js"></script>
+    <script>
+        // new Promise((resolve, reject) => {
+        //     console.log("fail");
+        //     reject(2222);
+        // }).then(data => {
+        //     console.log("success-", data);
+        // }, err => {
+        //     console.log("err-", err);
+        // });
+
+
+        new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log("task");
+                    reject(2222);
+                }, 2000)
+            }).then(data => {
+                console.log("success-", data);
+            }, err => {
+                console.log("err-", err);
+            })
+            .then(data => {
+                console.log("success-", data);
+            }, err => {
+                console.log("err-", err);
+            })
+
+        imgScr: uls[idx].querySelector(".item-img") ? uls[idx].querySelector(".item-img").querySelector("img").src : "";
+    </script>
+</body>
+
+</html>

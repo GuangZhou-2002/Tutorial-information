@@ -1,0 +1,1 @@
+"use strict";var fs=require("fs");fs.writeFileSync("./1.txt","问君能有几多愁，恰似一江春水向东流。",{flag:"a+"});

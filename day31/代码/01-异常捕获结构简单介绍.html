@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* try...catch 异常捕获结构 */
+        /* 语法：try{ 多条语句 }catch(错误信息参数){ 出错后的处理方法 } finally{ 清理操作 }*/
+        /* 特点：当代码从上往下的执行的时候，如果出错了那么代码执行就会被终止，并且在控制台打印出错信息,后面的任务将不再执行。 */
+        console.log("1");
+        let likeArr = {
+            0: "name",
+            1: "age",
+            length: 2
+        };
+
+        console.log("2");
+
+        /* 特点：尝试执行try后面的代码，如果出错了那么就把错误信息传递给catch，并且在catch中进行错误的处理 */
+        /* 如果没有错误，那么就正常执行，catch中的代码将不会被执行 */
+        try {
+            // likeArr.forEach(item => console.log(item));
+            let b = 123;
+        } catch (e) {
+            console.log("代码执行出错了", e);
+            // throw "代码执行出错了";   /* 抛出异常：后面的代码就不会再执行。 */
+            // throw new Error("代码执行出错了:" + e);
+        } finally {
+            /* 不管try里面的代码是否出错，都会执行该代码块 */
+            console.log("finally");
+        }
+
+        console.log("3");
+    </script>
+</body>
+
+</html>

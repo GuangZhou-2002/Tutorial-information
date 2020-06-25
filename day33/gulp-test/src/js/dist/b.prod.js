@@ -1,0 +1,1 @@
+"use strict";function sum(n,o){console.log(n+o)}function Person(){this.name="哈哈"}var p=new Person;

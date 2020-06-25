@@ -1,0 +1,1 @@
+"use strict";var http=require("http"),server=http.createServer(function(e,t){t.setHeader("Content-Type","text/html;charset=utf-8");t.end(JSON.stringify([{name:"zs",age:18},{name:"lw",age:18},{name:"ww",age:18}]))});server.listen(8888,function(){console.log("开启了服务监听，监听的端口号是8888")});

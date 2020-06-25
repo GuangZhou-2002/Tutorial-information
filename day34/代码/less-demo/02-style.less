@@ -1,0 +1,58 @@
+/* 嵌套写法(强烈推荐) - 公司团队(less|sass|css) */
+/* 变量：@变量名:值 */
+/* 注意：变量分成两种：全局变量 | 局部变量 */
+/*      全局变量就是在最外层声明的变量，在less文件的任何地方都可以使用。 */
+/*      局部变量是在一个范围内声明的，仅仅在该指定的范围内有效。 */
+/* Mixin 混入(函数)-模板 */
+/* (1) 声明 */
+/* (2) 调用 */
+
+/* 全局变量 */
+@bgc1: #d8d;
+@bgc2:#194;
+
+body{
+  background: #ddd;
+
+
+  .header{
+    width: 800px;
+    height: 100px;
+    background:@bgc1
+  }
+
+  .content {
+    width: 800px;
+    height: 400px;
+    background: #fff;
+
+     @textColor:#fff;
+    .content-top{
+      height: 100px;
+      margin: 10px;
+      background: @bgc2;
+      color: @textColor;
+    }
+
+    .content-body {
+      height: 200px;
+      margin: 10px;
+      background: @bgc2;
+          color: @textColor;
+    }
+
+    .content-bottom {
+      height: 100px;
+      margin: 10px;
+      background: @bgc2;
+      color: @textColor;
+    }
+  }
+
+  .footer {
+     width: 800px;
+     height: 100px;
+     background: @bgc1;
+    //  color: @textColor;   /* 不能访问局部变量：报错 */
+   }
+}

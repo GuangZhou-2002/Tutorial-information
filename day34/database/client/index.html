@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid" style="padding: 10px;">
+        <button class="btn btn-success">创建数据库</button>
+        <button class="btn btn-success">创建数据表</button>
+        <button class="btn btn-success">插入数据</button>
+        <button class="btn btn-success">获取数据</button>
+        <button class="btn btn-success">修改数据</button>
+        <button class="btn btn-info">删除数据</button>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>名字</th>
+                    <th>密码</th>
+                    <th>邮箱</th>
+                    <th>日期</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script>
+        $("button").eq(0).click(() => {
+            $.get("../server/createDB.php", (data) => {
+                console.log(data);
+            })
+        })
+
+        $("button").eq(1).click(() => {
+            $.get("../server/createTable.php", (data) => {
+                console.log(data);
+            })
+        })
+
+        $("button").eq(2).click(() => {
+            $.get("../server/insertData.php", (data) => {
+                console.log(data);
+            })
+        })
+
+        $("button").eq(3).click(() => {
+            $.get("../server/getUserData.php", (data) => {
+                console.log(data);
+                /* 渲染页面 */
+                let html = data.map((item, idx) => `<tr class=${idx%2==0?"success":"info"}>
+                  <td>${item.user_id}</td>
+                  <td>${item.user_name}</td>
+                  <td>${item.user_password}</td>
+                  <td>${item.user_email}</td>
+                  <td>${item.user_date}</td>
+                </tr>`).join("");
+
+                $("tbody").html(html);
+
+            }, "json")
+        })
+
+        $("button").eq(4).click(() => {
+            $.get("../server/updateUserData.php", (data) => {
+                console.log(data);
+            })
+        })
+    </script>
+
+</body>
+
+</html>

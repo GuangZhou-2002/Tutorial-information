@@ -1,0 +1,1 @@
+"use strict";var _a=require("./a.js"),_b=_interopRequireDefault(require("./b.js"));function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}console.log("index.js",_a.a,_a.c),(0,_a.showA)(),console.log(_b.default.a,_b.default.b);

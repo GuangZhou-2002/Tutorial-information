@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* Promise 承诺|保证 */
+        /* 1、Promise 本身是一个类(构造函数)，在使用的时候需要通过new来调用 */
+        /* 2、Promise 存在三种状态：pending(等待态)  resolve(成功态)  reject(失败态) */
+        /* 3、状态切换：pending->resolve pending->reject  */
+        /* 4、基本结构: 我们在实例化对象的时候，Promise接收一个函数作为参数，该函数又拥有两个参数(函数) */
+        /*    resolve函数：当调用这个函数的时候，表明任务成功了，reject表明任务失败了 */
+        // let promise = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+
+        //         console.log("task1");
+        //         /* 说明定时器异步任务已经结束了(成功|失败) */
+        //         /* 在异步任务中，我们应该根据任务的执行情况来主动告诉Promise当前任务成功了还是失败了 */
+        //         /* 如果成功，那么应该调用resolve(),如果在调用的时候有数据需要传递，那么就直接以参数方式传递 */
+        //         /* 如果失败，那么应该调用reject(),如果在调用的时候有数据需要传递，那么就直接以参数方式传递 */
+        //         // resolve("成功的原因:我的任务很简单！！！");
+        //         reject("失败的原因：我不够帅！");
+        //     }, 1000)
+        // });
+
+        // /* promise.then(successCallBack,failCallBack) */
+        // promise.then((data) => {
+        //     console.log("success-data", data);
+        // }, err => {
+        //     console.log("error-err", err);
+        // })
+
+
+        new Promise((resolve, reject) => {
+                setTimeout(() => {
+
+                    console.log("task1");
+                    /* 说明定时器异步任务已经结束了(成功|失败) */
+                    /* 在异步任务中，我们应该根据任务的执行情况来主动告诉Promise当前任务成功了还是失败了 */
+                    /* 如果成功，那么应该调用resolve(),如果在调用的时候有数据需要传递，那么就直接以参数方式传递 */
+                    /* 如果失败，那么应该调用reject(),如果在调用的时候有数据需要传递，那么就直接以参数方式传递 */
+                    // resolve("成功的原因:我的任务很简单！！！");
+                    reject("失败的原因：我不够帅！");
+                }, 1000)
+            }).then((data) => {
+                console.log("success-data1", data);
+            }, err => {
+                console.log("error-err1", err);
+            })
+            .then((data) => {
+                console.log("success-data2", data);
+            }, err => {
+                console.log("error-err2", err);
+            }).then((data) => {
+                console.log("success-data3", data);
+            }, err => {
+                console.log("error-err3", err);
+            })
+    </script>
+</body>
+
+</html>

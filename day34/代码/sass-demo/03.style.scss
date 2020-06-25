@@ -1,0 +1,22 @@
+/* 1、没有参数(简单的模板) */
+
+
+/* 2、有参数的情况(函数) */
+
+.wh {
+    width: 100px;
+    height: 200px;
+}
+
+@mixin bd($color) {
+    border: 1px solid $color;
+}
+
+body {
+    @extend .wh;
+    @include bd(#000);
+    div {
+        @extend .wh;
+        @include bd(#f00)
+    }
+}

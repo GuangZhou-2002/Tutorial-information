@@ -1,0 +1,21 @@
+{
+    "name": "NPM-demo",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "injq": "npm install jquery jquery-ui",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bootstrap": "^4.5.0",
+        "jquery": "^3.5.1",
+        "jquery-ui": "^1.12.1"
+    },
+    "devDependencies": {
+        "sass": "^1.26.9"
+    }
+}

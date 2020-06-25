@@ -1,0 +1,1 @@
+"use strict";var http=require("http"),jQ=require("jquery"),_require=require("./js/jq"),jq=_require.jq;console.log(jq);

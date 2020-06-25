@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.4.1.js"></script>
+</head>
+
+<body>
+    <script>
+        /* 异步任务(多个任务)的解决方案： */
+        /* 需求：请求A(异步)->请求B(异步)->请求C(异步)  A的结果作为B的参数，B的结果作为C的参数(依赖关系)*/
+
+        /* 错误： */
+        // let user;
+        // let email;
+        // $.ajax({
+        //     url: "./server/A.php",
+        //     success(data) {
+        //         console.log("1", data);
+        //         user = data;
+        //     }
+        // })
+
+        // $.ajax({
+        //     url: "./server/B.php",
+        //     data: "user=" + user,
+        //     success(data) {
+        //         console.log("2", data);
+        //         email = data;
+        //     }
+        // })
+
+        // $.ajax({
+        //     url: "./server/C.php",
+        //     data: "email=" + email,
+        //     success(data) {
+        //         console.log("3", data);
+        //     }
+        // })
+
+        /* 注意：上面的代码无法保证任务的执行顺序 */
+        /* 异步任务的解决方案： */
+        /* [1] 回调函数 回调函数的嵌套，如果任务过多，严重问题：回调地狱*/
+        /* [2] Promise 社区(PromisesA+规范) - ES6+(Promise)  */
+        /* [3] Generator 生成器函数 */
+        /* [4] async + await 本质是对Generator 生成器函数进行了封装*/
+
+
+        // $.ajax({
+        //     url: "./server/A.php",
+        //     success(data1) {
+        //         console.log("1", data1);
+        //         $.ajax({
+        //             url: "./server/B.php",
+        //             data: "user=" + data1,
+        //             success(data2) {
+
+        //                 console.log("2", data2);
+        //                 $.ajax({
+        //                     url: "./server/C.php",
+        //                     data: "email=" + data2,
+        //                     success(data3) {
+        //                         console.log("3", data3);
+        //                     }
+        //                 })
+        //             }
+        //         })
+        //     }
+        // })
+
+        // console.dir(Promise)
+
+        /* 生成器函数为函数提供了暂停和继续执行的功能 */
+        /* 暂停|继续 */
+        function* fn() {
+            console.log("fn-1")
+            yield 123;
+            console.log("fn-2")
+        }
+
+        let generator = fn();
+        console.log(generator)
+    </script>
+</body>
+
+</html>

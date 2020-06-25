@@ -1,0 +1,52 @@
+/* 嵌套写法(强烈推荐) - 公司团队(less|sass|css) */
+/* 变量：@变量名:值 */
+/* 注意：变量分成两种：全局变量 | 局部变量 */
+/*      全局变量就是在最外层声明的变量，在less文件的任何地方都可以使用。 */
+/*      局部变量是在一个范围内声明的，仅仅在该指定的范围内有效。 */
+/* Mixin 混入(函数)-模板 */
+/* (1) 声明 */
+/* (2) 调用 */
+/* 全局变量 */
+/* 函数 */
+body {
+  background: #ddd;
+}
+body .header {
+  width: 800px;
+  height: 100px;
+  line-height: 100px;
+  background: #000;
+}
+body .content {
+  width: 800px;
+  height: 400px;
+  line-height: 400px;
+  background: #fff;
+}
+body .content div {
+  width: 300px;
+  height: 44px;
+  border: 1px solid #ccc;
+  margin: 10px auto;
+}
+body .content div:nth-of-type(1) {
+  background: #ff2b00;
+}
+body .content div:nth-of-type(2) {
+  background: #55ff00;
+}
+body .content div:nth-of-type(3) {
+  background: #00ff55;
+}
+body .content div:nth-of-type(4) {
+  background: #ff0080;
+}
+body .content div:nth-of-type(5) {
+  background: #ff00d4;
+}
+body .footer {
+  width: 800px;
+  height: 100px;
+  line-height: 100px;
+  background: #000;
+}

@@ -1,0 +1,1 @@
+"use strict";var moduleA=(console.log(1),{a:1,showA:function(){console.log("--------")}});

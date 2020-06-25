@@ -1,0 +1,59 @@
+/* 嵌套写法(强烈推荐) - 公司团队(less|sass|css) */
+/* 变量：@变量名:值 */
+/* 注意：变量分成两种：全局变量 | 局部变量 */
+/*      全局变量就是在最外层声明的变量，在less文件的任何地方都可以使用。 */
+/*      局部变量是在一个范围内声明的，仅仅在该指定的范围内有效。 */
+/* Mixin 混入(函数)-模板 */
+/* (1) 声明 */
+/* (2) 调用 */
+
+/* 全局变量 */
+@bgc1: #000;
+@bgc2:#194;
+
+@width:800px;
+@height:100px;
+
+/* 函数 */
+.setWAndHAndBgc(@w,@h,@bgc){
+  width: @w;
+  height: @h;
+  line-height: @h;
+  background:@bgc
+}
+
+body{
+  background: #ddd;
+
+  .header{
+    .setWAndHAndBgc(@width, @height, @bgc1);
+  }
+
+  .content {
+    .setWAndHAndBgc(@width, 4 * @height, #fff);
+
+     @textColor:#fff;
+    
+     .content-top{
+      .setWAndHAndBgc(@width, @height, @bgc2);
+      margin: 10px;
+      color: @textColor;
+    }
+
+    .content-body {
+      .setWAndHAndBgc(@width, 2*@height, @bgc2);
+      margin: 10px;
+      color: @textColor;
+    }
+
+    .content-bottom {
+       .setWAndHAndBgc(@width, 1*@height, @bgc2);
+      margin: 10px;
+      color: @textColor;
+    }
+  }
+  
+  .footer {
+      .setWAndHAndBgc(@width, @height, @bgc1);
+   }
+}

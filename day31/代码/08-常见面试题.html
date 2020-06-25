@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 面试题 */
+        console.log("1");
+
+        setTimeout(() => {
+            console.log("9")
+
+        }, 20);
+
+        new Promise((resolve, reject) => {
+            console.log("2")
+
+            setTimeout(() => {
+                console.log("3");
+                resolve();
+                console.log("4");
+            }, 1000)
+
+            console.log("5")
+        }).then((data) => {
+            console.log("6");
+        }, err => {
+            console.log("7");
+        })
+
+        console.log("8");
+
+        /* 原则：先同步再异步 */
+        /* 最终的结果：1-2-5-8-3-4-6*/
+    </script>
+</body>
+
+</html>

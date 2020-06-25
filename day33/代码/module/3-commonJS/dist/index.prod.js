@@ -1,0 +1,1 @@
+"use strict";var moduleA=require("./a");console.log("a.js",moduleA);var _require=require("./b"),a=_require.a,b=_require.b;console.log("b.js",a,b);

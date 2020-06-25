@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.showA=showA,exports.a=exports.c=void 0;var a=1;exports.a=a;var c=24;function showA(){console.log("--------")}exports.c=c,console.log(a);

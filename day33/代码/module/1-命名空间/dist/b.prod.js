@@ -1,0 +1,1 @@
+"use strict";var NameSpaceB={a:11111,b:2};

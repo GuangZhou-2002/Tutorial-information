@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+/* 1、没有参数(简单的模板) */
+
+
+/* 2、有参数的情况(函数) */
+
+.wh,
+body,
+body div {
+    width: 100px;
+    height: 200px;
+}
+
+body {
+    border: 1px solid #000;
+}
+
+body div {
+    border: 1px solid #f00;
+}

@@ -1,0 +1,33 @@
+/* 注释：同less一致 */
+
+
+/* 变量： */
+
+
+/* less   @变量名:值； */
+
+
+/* sass   $变量名:值； */
+
+
+/* 嵌套写法:同Less一致 */
+
+
+/* @import 在该文件中引入其他文件的内容 */
+
+@import "./wh.scss";
+$c:yellow;
+body {
+    width: 8 * $w;
+    height: 10 * $h;
+    background: $c;
+    $bgc: #195;
+    .header {
+        width: 8 * $w;
+        height: 3 * $h;
+        background: $c;
+        span {
+            color: $c;
+        }
+    }
+}

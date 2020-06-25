@@ -1,0 +1,1 @@
+"use strict";console.log("index.js = ",NameSpaceA.a,NameSpaceB.a),console.log("index.js = ",NameSpaceB.b);

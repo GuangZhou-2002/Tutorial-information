@@ -1,0 +1,1 @@
+"use strict";var a=1,c=24;function showA(){console.log("--------")}console.log(a),module.exports={a:a,c:c,showA:showA};

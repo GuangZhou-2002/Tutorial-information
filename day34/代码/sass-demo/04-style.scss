@@ -1,0 +1,11 @@
+div {
+    border: 1px solid #000;
+    width: 600px;
+    height: 400px;
+    span {
+        background: #666;
+        &:hover {
+            color: yellow;
+        }
+    }
+}
