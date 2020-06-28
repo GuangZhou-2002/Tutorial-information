@@ -99,6 +99,7 @@ $(() => {
     /* [3] 在js代码中调用插件中提供的构造函数创建实例对象，并且调用draw方法 */
     let imgCodeTarget;
     let captcha = new Captcha({ lineNum: 10, dotNum: 3, fontSize: 40, length: 4, content: "012345432424542" });
+
     captcha.draw(document.querySelector('#captcha'), r => {
         imgCodeTarget = r;
         console.log(r, '验证码1');
